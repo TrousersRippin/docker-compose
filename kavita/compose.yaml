@@ -1,0 +1,23 @@
+---
+services:
+  kavita:
+    image: ghcr.io/kareadita/kavita:latest
+    container_name: kavita
+    hostname: kavita
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 5000:5000/tcp
+    volumes:
+      - /opt/stacks/kavita/config:/kavita/config:rw
+      - /mnt/hdd/books:/books:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,27 @@
+---
+services:
+  transmission:
+    image: lscr.io/linuxserver/transmission:latest
+    container_name: transmission
+    hostname: transmission
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 9091:9091/tcp
+      - 51413:51413/tcp
+      - 51413:51413/udp
+    volumes:
+      - /opt/stacks/transmission/config:/config:rw
+      - /opt/stacks/transmission/config:/watch:rw
+      - /mnt/nvme/torrents:/data/torrents:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,28 @@
+---
+services:
+  homepage:
+    image: ghcr.io/gethomepage/homepage:latest
+    container_name: homepage
+    hostname: homepage
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - HOMEPAGE_ALLOWED_HOSTS=${HOMEPAGE_ALLOWED_HOSTS}
+    healthcheck:
+      disable: true
+    ports:
+      - 3000:3000/tcp
+    volumes:
+      - /opt/stacks/homepage/config:/config:rw
+      - /opt/stacks/homepage/icons:/app/public/icons:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /mnt/hdd:/mnt/hdd:ro
+      - /mnt/nvme:/mnt/nvme:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

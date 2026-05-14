@@ -1,0 +1,31 @@
+---
+services:
+  gitea:
+    image: ghcr.io/go-gitea/gitea:latest-rootless
+    container_name: gitea
+    hostname: gitea
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - USER_UID=${USER_UID}
+      - USER_GID=${USER_GID}
+      - GITEA__database__DB_TYPE=${GITEA__database__DB_TYPE}
+      - GITEA__database__HOST=${GITEA__database__HOST}
+      - GITEA__database__NAME=${GITEA__database__NAME}
+      - GITEA__database__USER=${GITEA__database__USER}
+      - GITEA__database__PASSWD=${GITEA__database__PASSWD}
+      - GITEA__database__SSL_MODE=${GITEA__database__SSL_MODE}
+    ports:
+      - 3002:3002/tcp
+      - 2222:2222/tcp
+    volumes:
+      - /opt/stacks/gitea/config:/etc/gitea:rw
+      - /opt/stacks/gitea/data:/var/lib/gitea:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

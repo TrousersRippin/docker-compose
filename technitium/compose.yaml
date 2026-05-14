@@ -1,0 +1,35 @@
+---
+services:
+  technitium:
+    image: docker.io/technitium/dns-server:latest
+    container_name: technitium
+    hostname: technitium
+    restart: unless-stopped
+    sysctls:
+      - net.ipv4.ip_local_port_range=1024 65000
+    environment:
+      - TZ=${TZ}
+      - DNS_SERVER_ADMIN_PASSWORD=${DNS_SERVER_ADMIN_PASSWORD}
+      - DNS_SERVER_DOMAIN=${DNS_SERVER_DOMAIN}
+      - DNS_SERVER_FORWARDERS=${DNS_SERVER_FORWARDERS}
+      - DNS_SERVER_PREFER_IPV6=${DNS_SERVER_PREFER_IPV6}
+      - DNS_SERVER_RECURSION=${DNS_SERVER_RECURSION}
+      - DOTNET_GCConserveMemory=9
+      - DOTNET_gcServer=0
+    ports:
+      - 5380:5380/tcp
+      - 53:53/tcp
+      - 53:53/udp
+      - 53443:53443/tcp
+      # - 853:853/udp      # DNS-over-QUIC
+      # - 853:853/tcp      # DNS-over-TLS
+      # - 443:443/udp      # DNS-over-HTTPS (HTTP/3)
+      # - 443:443/tcp      # DNS-over-HTTPS (HTTP/1.1, HTTP/2)
+    volumes:
+      - /opt/stacks/technitium/config:/etc/dns:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

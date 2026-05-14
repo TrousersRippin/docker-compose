@@ -1,0 +1,45 @@
+---
+services:
+  vaultwarden:
+    image: ghcr.io/dani-garcia/vaultwarden:latest
+    container_name: vaultwarden
+    hostname: vaultwarden
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - ADMIN_TOKEN=${ADMIN_TOKEN}
+      - DATABASE_URL=${DATABASE_URL}
+      - DOMAIN=${DOMAIN}
+      - EXPERIMENTAL_CLIENT_FEATURE_FLAGS=${EXPERIMENTAL_CLIENT_FEATURE_FLAGS}
+      - EXTENDED_LOGGING=${EXTENDED_LOGGING}
+      - INVITATIONS_ALLOWED=${INVITATIONS_ALLOWED}
+      - LOG_LEVEL=${LOG_LEVEL}
+      - PASSWORD_ITERATIONS=${PASSWORD_ITERATIONS}
+      - ROCKET_PORT=${ROCKET_PORT}
+      - SHOW_PASSWORD_HINT=${SHOW_PASSWORD_HINT}
+      - SIGNUPS_ALLOWED=${SIGNUPS_ALLOWED}
+      - SIGNUPS_DOMAINS_WHITELIST=${SIGNUPS_DOMAINS_WHITELIST}
+      - SIGNUPS_VERIFY=${SIGNUPS_VERIFY}
+      - SMTP_FROM=${SMTP_FROM}
+      - SMTP_HOST=${SMTP_HOST}
+      - SMTP_PASSWORD=${SMTP_PASSWORD}
+      - SMTP_PORT=${SMTP_PORT}
+      - SMTP_SECURITY=${SMTP_SECURITY}
+      - SMTP_USERNAME=${SMTP_USERNAME}
+      - WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED}
+      - UID=${UID:-1000}
+      - GID=${GID:-1000}
+    healthcheck:
+      disable: true
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 8877:8877/tcp
+    volumes:
+      - /opt/stacks/vaultwarden/data:/data:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

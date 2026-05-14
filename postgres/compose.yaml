@@ -1,0 +1,29 @@
+---
+services:
+  postgres:
+    image: docker.io/library/postgres:17.9
+    container_name: postgres
+    hostname: postgres
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    command: postgres --hba-file=/etc/postgresql/pg_hba.conf
+    ports:
+      - 5432:5432/tcp
+    volumes:
+      - /opt/stacks/postgres/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
+      - postgres-data:/var/lib/postgresql/data:rw
+    networks:
+      - proxy
+
+volumes:
+  postgres-data:
+    name: postgres-data
+    external: true
+
+networks:
+  proxy:
+    external: true

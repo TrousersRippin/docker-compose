@@ -1,0 +1,25 @@
+---
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli:latest
+    container_name: tautulli
+    hostname: tautulli
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+    healthcheck:
+      disable: true
+    ports:
+      - 8181:8181/tcp
+    volumes:
+      - /opt/stacks/tautulli/config:/config:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

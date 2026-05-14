@@ -1,0 +1,104 @@
+---
+services:
+  bazarr:
+    image: lscr.io/linuxserver/bazarr:latest
+    container_name: bazarr
+    hostname: bazarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 6767:6767/tcp
+    volumes:
+      - /opt/stacks/bazarr/config:/config:rw
+      - /mnt/nvme:/data:rw
+    networks:
+      - proxy
+
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    hostname: prowlarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+      - DOTNET_GCConserveMemory=9
+      - DOTNET_gcServer=0
+    ports:
+      - 9696:9696/tcp
+    volumes:
+      - /opt/stacks/prowlarr/config:/config:rw
+    networks:
+      - proxy
+
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    hostname: radarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+      - DOTNET_GCConserveMemory=9
+      - DOTNET_gcServer=0
+    ports:
+      - 7878:7878/tcp
+    volumes:
+      - /opt/stacks/radarr/config:/config:rw
+      - /mnt/nvme:/data:rw
+    networks:
+      - proxy
+
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    hostname: seerr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+    ports:
+      - 5055:5055/tcp
+    volumes:
+      - /opt/stacks/seerr/config:/app/config:rw
+    networks:
+      - proxy
+
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    hostname: sonarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+      - DOTNET_GCConserveMemory=9
+      - DOTNET_gcServer=0
+    ports:
+      - 8989:8989/tcp
+    volumes:
+      - /opt/stacks/sonarr/config:/config:rw
+      - /mnt/nvme:/data:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

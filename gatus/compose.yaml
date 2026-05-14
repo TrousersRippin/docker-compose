@@ -1,0 +1,24 @@
+---
+services:
+  gatus:
+    image: ghcr.io/twin/gatus:latest
+    container_name: gatus
+    hostname: gatus
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - GATUS_CONFIG_PATH=${GATUS_CONFIG_PATH}
+      - GATUS_DB_URL=${GATUS_DB_URL}
+      - GATUS_PORT=${GATUS_PORT}
+    ports:
+      - 8899:8899/tcp
+    volumes:
+      - /opt/stacks/gatus/config:/config:ro
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,45 @@
+---
+services:
+  redis:
+    image: docker.io/library/redis:latest
+    container_name: immich-redis
+    hostname: immich-redis
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+    volumes:
+      - /opt/stacks/redis/data:/data:rw
+    networks:
+      - proxy
+
+  immich:
+    image: ghcr.io/immich-app/immich-server:release
+    container_name: immich
+    hostname: immich
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - DB_HOSTNAME=${DB_HOSTNAME}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - REDIS_HOSTNAME=${REDIS_HOSTNAME}
+    ports:
+      - 2283:2283/tcp
+    volumes:
+      - /opt/stacks/immich/upload:/usr/src/app/upload:rw
+      - /opt/stacks/immich/data:/data:rw
+      - /mnt/hdd/photos:/usr/src/app/photos:ro
+    depends_on:
+      - redis
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

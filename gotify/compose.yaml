@@ -1,0 +1,27 @@
+---
+services:
+  gotify:
+    image: ghcr.io/gotify/server:latest
+    container_name: gotify
+    hostname: gotify
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - GOTIFY_DEFAULTUSER_NAME=${GOTIFY_DEFAULTUSER_NAME}
+      - GOTIFY_DEFAULTUSER_PASS=${GOTIFY_DEFAULTUSER_PASS}
+      - GOTIFY_SERVER_PORT=${GOTIFY_SERVER_PORT}
+    healthcheck:
+      disable: true
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 8001:8001/tcp
+    volumes:
+      - /opt/stacks/gotify/config:/app/data:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

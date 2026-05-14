@@ -1,0 +1,24 @@
+---
+services:
+  memos:
+    image: ghcr.io/usememos/memos:stable
+    container_name: memos
+    hostname: memos
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - MEMOS_DRIVER=${MEMOS_DRIVER}
+      - MEMOS_DSN=${MEMOS_DSN}
+    user: ${UID:-1000}:${GID:-1000}
+    ports:
+      - 5230:5230/tcp
+    volumes:
+      - /opt/stacks/memos/config:/var/opt/memos:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

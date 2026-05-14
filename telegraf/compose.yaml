@@ -1,0 +1,34 @@
+---
+services:
+  telegraf:
+    image: docker.io/library/telegraf:latest
+    container_name: telegraf
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - HOST_ETC=/hostfs/etc
+      - HOST_PROC=/hostfs/proc
+      - HOST_SYS=/hostfs/sys
+      - HOST_VAR=/hostfs/var
+      - HOST_RUN=/hostfs/run
+      - HOST_MOUNT_PREFIX=/hostfs
+    command: ["--non-strict-env-handling"]
+    user: ${UID:-1000}:${GID:-1000}
+    group_add:
+      - "985"
+    ports:
+      - 8125:8125/tcp
+      - 9273:9273/tcp
+    volumes:
+      - /opt/stacks/telegraf/config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /:/hostfs:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
+#getent group docker

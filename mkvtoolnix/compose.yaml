@@ -1,0 +1,25 @@
+---
+services:
+  mkvtoolnix:
+    image: ghcr.io/jlesage/mkvtoolnix:latest
+    container_name: mkvtoolnix
+    hostname: mkvtoolnix
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+      - DARK_MODE=1
+    ports:
+      - 5800:5800/tcp
+    volumes:
+      - /opt/stacks/mkvtoolnix/config:/config:rw
+      - /mnt/nvme:/storage:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

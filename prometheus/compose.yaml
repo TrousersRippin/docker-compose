@@ -1,0 +1,32 @@
+---
+services:
+  prometheus:
+    image: docker.io/prom/prometheus:latest
+    container_name: prometheus
+    hostname: prometheus
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+    command:
+      - --config.file=/etc/prometheus/prometheus.yaml
+      - --web.enable-remote-write-receiver
+      - --web.enable-lifecycle
+    user: 65534:65534
+    ports:
+      - 9090:9090/tcp
+    volumes:
+      - /opt/stacks/prometheus/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
+      - prometheus-data:/prometheus:rw
+    networks:
+      - proxy
+
+volumes:
+  prometheus-data:
+    name: prometheus-data
+    external: true
+
+networks:
+  proxy:
+    external: true

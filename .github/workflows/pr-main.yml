@@ -1,0 +1,94 @@
+name: On PR to Main
+on:
+  pull_request:
+    branches: ["main"]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  compose-validate:
+    name: Compose Validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find and validate Compose files
+        run: |
+          shopt -s globstar nullglob
+          files=(**/compose.yml **/compose.yaml **/docker-compose.yml **/docker-compose.yaml)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No Compose files found"
+            exit 1
+          fi
+          for f in "${files[@]}"; do
+            echo "Validating $f"
+            docker compose -f "$f" config --quiet
+          done
+
+  hadolint:
+    name: Dockerfile Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Find and lint Dockerfiles
+        run: |
+          shopt -s globstar nullglob
+          files=(**/Dockerfile **/Dockerfile.*)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No Dockerfiles found"
+            exit 0
+          fi
+          docker run --rm -i hadolint/hadolint hadolint \
+            --failure-threshold warning - < <(cat "${files[@]}")
+
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck
+        run: |
+          shopt -s globstar nullglob
+          files=(scripts/**/*.sh)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No shell scripts found"
+            exit 0
+          fi
+          shellcheck --severity=warning "${files[@]}"
+
+trivy:
+    name: Trivy Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Trivy (config scan)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          scan-ref: .
+          format: sarif
+          output: trivy-results.sarif
+          exit-code: "0"
+      - name: Upload SARIF to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v4
+        with:
+          sarif_file: trivy-results.sarif
+        if: always()
+
+  dotenv-lint:
+    name: Env File Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install dotenv-linter
+        run: |
+          curl -sSfL https://raw.githubusercontent.com/dotenv-linter/dotenv-linter/master/install.sh \
+            | sh -s -- -b /usr/local/bin
+      - name: Lint .env files
+        run: |
+          shopt -s globstar nullglob
+          files=(**/.env.example **/.env.template **/.env.sample)
+          if [ ${#files[@]} -eq 0 ]; then
+            echo "No .env template files found"
+            exit 0
+          fi
+          dotenv-linter "${files[@]}"
