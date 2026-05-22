@@ -8,6 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
+      - TZ=${TZ}
       - ADMIN_TOKEN=${ADMIN_TOKEN}
       - DATABASE_URL=${DATABASE_URL}
       - DOMAIN=${DOMAIN}

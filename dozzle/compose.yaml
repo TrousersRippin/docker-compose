@@ -12,13 +12,13 @@ services:
       - DOZZLE_ADDR=:8008
       - DOZZLE_ENABLE_ACTIONS=true
       - DOZZLE_NO_ANALYTICS=true
+      - DOZZLE_REMOTE_AGENT=10.1.1.31:7007|client-01|hashicorp,10.1.1.32:7007|client-02|hashicorp,10.1.1.33:7007|client-03|hashicorp
     ports:
       - 8008:8008/tcp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - proxy
-
 networks:
   proxy:
     external: true

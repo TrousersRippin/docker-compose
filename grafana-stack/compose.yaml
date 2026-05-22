@@ -65,9 +65,7 @@ services:
     ports:
       - 3333:3333/tcp
     volumes:
-      - /opt/stacks/grafana/config/grafana.ini:/etc/grafana/grafana.ini:rw
-      - /opt/stacks/grafana/dashboards:/etc/grafana/dashboards:ro
-      - /opt/stacks/grafana/provisioning:/etc/grafana/provisioning:ro
+      - /opt/stacks/grafana/config:/etc/grafana:ro
       - /opt/stacks/grafana/data:/var/lib/grafana:rw
     depends_on:
       - loki

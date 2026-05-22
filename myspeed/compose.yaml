@@ -12,7 +12,7 @@ services:
     ports:
       - 5216:5216/tcp
     volumes:
-      - /opt/stacks/myspeed/config:/myspeed/data:rw
+      - /opt/stacks/myspeed/data:/myspeed/data:rw
     networks:
       - proxy
 
