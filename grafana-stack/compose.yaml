@@ -9,6 +9,7 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
+      - ALLOY_HOSTNAME=zimacube.thenoisykeyboard.com
     command: 
       - run 
       - --server.http.listen-addr=0.0.0.0:12345
