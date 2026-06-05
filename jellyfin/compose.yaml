@@ -18,7 +18,7 @@ services:
       - /opt/stacks/jellyfin/cache:/cache:rw
       - /opt/stacks/jellyfin/config:/config:rw
       - /mnt/hdd:/data:ro
-      - /mnt/nvme/media:/download:rw
+      - /mnt/ssd/media:/download:rw
     networks:
       - proxy
 

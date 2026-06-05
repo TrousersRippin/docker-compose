@@ -29,4 +29,4 @@ services:
       - /opt/stacks/plex:/config:rw
       - /opt/stacks/plex:/transcode:rw
       - /mnt/hdd:/data:ro
-      - /mnt/nvme/media:/download:rw
+      - /mnt/ssd/media:/download:rw

@@ -15,7 +15,7 @@ services:
       - 6767:6767/tcp
     volumes:
       - /opt/stacks/bazarr/config:/config:rw
-      - /mnt/nvme:/data:rw
+      - /mnt/ssd:/data:rw
     networks:
       - proxy
 
@@ -56,7 +56,7 @@ services:
       - 7878:7878/tcp
     volumes:
       - /opt/stacks/radarr/config:/config:rw
-      - /mnt/nvme:/data:rw
+      - /mnt/ssd:/data:rw
     networks:
       - proxy
 
@@ -95,7 +95,7 @@ services:
       - 8989:8989/tcp
     volumes:
       - /opt/stacks/sonarr/config:/config:rw
-      - /mnt/nvme:/data:rw
+      - /mnt/ssd:/data:rw
     networks:
       - proxy
 
