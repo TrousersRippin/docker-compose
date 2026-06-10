@@ -14,9 +14,9 @@ services:
       - GITEA__database__DB_TYPE=${GITEA__database__DB_TYPE}
       - GITEA__database__HOST=${GITEA__database__HOST}
       - GITEA__database__NAME=${GITEA__database__NAME}
-      - GITEA__database__USER=${GITEA__database__USER}
       - GITEA__database__PASSWD=${GITEA__database__PASSWD}
       - GITEA__database__SSL_MODE=${GITEA__database__SSL_MODE}
+      - GITEA__database__USER=${GITEA__database__USER}
     ports:
       - 3002:3002/tcp
       - 2222:2222/tcp

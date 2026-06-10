@@ -1,7 +1,7 @@
 ---
 services:
   postgres:
-    image: docker.io/library/postgres:17.9
+    image: docker.io/library/postgres:18.4
     container_name: postgres
     hostname: postgres
     restart: unless-stopped
@@ -15,7 +15,7 @@ services:
       - 5432:5432/tcp
     volumes:
       - /opt/stacks/postgres/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
-      - postgres-data:/var/lib/postgresql/data:rw
+      - postgres-data:/var/lib/postgresql:rw
     networks:
       - proxy
 

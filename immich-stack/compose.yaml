@@ -23,11 +23,11 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=${TZ}
-      - DB_HOSTNAME=${DB_HOSTNAME}
-      - DB_PORT=${DB_PORT}
       - DB_DATABASE_NAME=${DB_DATABASE_NAME}
-      - DB_USERNAME=${DB_USERNAME}
+      - DB_HOSTNAME=${DB_HOSTNAME}
       - DB_PASSWORD=${DB_PASSWORD}
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
       - REDIS_HOSTNAME=${REDIS_HOSTNAME}
     ports:
       - 2283:2283/tcp

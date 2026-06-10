@@ -16,10 +16,10 @@ services:
       - TZ=${TZ}
       - JWT_SECRET=${JWT_SECRET}
       - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_IP=${POSTGRES_IP}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_PORT=${POSTGRES_PORT}
+      - POSTGRES_USER=${POSTGRES_USER}
     healthcheck:
       disable: true
     ports:

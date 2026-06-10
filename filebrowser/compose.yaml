@@ -11,9 +11,9 @@ services:
       - TZ=${TZ}
       - PUID=${PUID}
       - PGID=${PGID}
-      - FB_USERNAME=${FB_USERNAME}
       - FB_PASSWORD=${FB_PASSWORD}
       - FB_PORT=${FB_PORT}
+      - FB_USERNAME=${FB_USERNAME}
     healthcheck:
       disable: true
     ports:
