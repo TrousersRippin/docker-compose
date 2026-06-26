@@ -14,7 +14,7 @@ services:
       - 5000:5000/tcp
     volumes:
       - /opt/stacks/kavita/config:/kavita/config:rw
-      - /mnt/hdd/books:/books:ro
+      - /mnt/ssd/books:/books:ro
     networks:
       - proxy
 

@@ -5,6 +5,8 @@ services:
     container_name: technitium
     hostname: technitium
     restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
     sysctls:
       - net.ipv4.ip_local_port_range=1024 65000
     environment:
