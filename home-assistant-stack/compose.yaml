@@ -39,8 +39,6 @@ services:
     volumes:
       - /opt/stacks/zigbee2mqtt/config:/app/data:rw
       - /run/udev:/run/udev:ro
-    depends_on:
-      - mosquitto
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
 
@@ -59,34 +57,6 @@ services:
     volumes:
       - /opt/stacks/home-assistant/config:/config:rw
       - /run/dbus:/run/dbus:ro
-
-#  otbr:
-#    image: ghcr.io/home-assistant-libs/otbr:latest
-#    container_name: otbr
-#    hostname: otbr
-#    restart: unless-stopped
-#    network_mode: host
-#    privileged: true
-#    environment:
-#      - TZ=Europe/Stockholm
-#    command: --radio-url spinel+hdlc+uart:///dev/sonoff_mg24?uart-baudrate=460800
-#    volumes:
-#      - /opt/stacks/otbr/data:/data:rw
-#      - /run/dbus:/run/dbus:ro
-#    devices:
-#      - /dev/sonoff_mg24:/dev/sonoff_mg24
-
-#  matter-server:
-#    image: ghcr.io/home-assistant-libs/python-matter-server:stable
-#    container_name: matter-server
-#    hostname: matter-server
-#    restart: unless-stopped
-#    network_mode: host
-#    security_opt:
-#      - no-new-privileges:true
-#    environment:
-#      - TZ=Europe/Stockholm
-#    command: --storage-path /data --paa-trust-store-path /data/credentials
-#    volumes:
-#      - /opt/stacks/matter-server/data:/data:rw
-#      - /run/dbus:/run/dbus:ro
+    depends_on:
+      - mosquitto
+      - zigbee2mqtt

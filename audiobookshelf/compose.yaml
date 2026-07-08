@@ -17,7 +17,7 @@ services:
     volumes:
       - /opt/stacks/audiobookshelf/config:/config:rw
       - /opt/stacks/audiobookshelf/metadata:/metadata:rw
-      - /mnt/hdd/audiobooks:/audiobooks:ro
+      - /mnt/ssd/media/books:/audiobooks:ro
     networks:
       - proxy
 

@@ -3,13 +3,13 @@ services:
   alloy:
     image: docker.io/grafana/alloy:latest
     container_name: alloy
-    hostname: zimacube
+    hostname: homelab
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-      - ALLOY_HOSTNAME=zimacube.thenoisykeyboard.com
+      - ALLOY_HOSTNAME=beelink.thenoisykeyboard.com
     command: 
       - run 
       - --server.http.listen-addr=0.0.0.0:12345
@@ -69,7 +69,7 @@ services:
       - 3333:3333/tcp
     volumes:
       - /opt/stacks/grafana/config:/etc/grafana:ro
-      - /opt/stacks/grafana/data:/var/lib/grafana:rw
+      - grafana-data:/var/lib/grafana:rw
     depends_on:
       - loki
     networks:
@@ -81,6 +81,9 @@ volumes:
     external: true
   loki-data:
     name: loki-data
+    external: true
+  grafana-data:
+    name: grafana-data
     external: true
 
 networks:

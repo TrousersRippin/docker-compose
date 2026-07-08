@@ -17,7 +17,7 @@ services:
     command: ["--non-strict-env-handling"]
     user: ${UID:-1000}:${GID:-1000}
     group_add:
-      - "985"
+      - "987"
     ports:
       - 8125:8125/tcp
       - 9273:9273/tcp
