@@ -17,6 +17,7 @@ services:
     command: ["--non-strict-env-handling"]
     user: ${UID:-1000}:${GID:-1000}
     group_add:
+      # find gid with: getent group docker
       - "987"
     ports:
       - 8125:8125/tcp
@@ -31,4 +32,3 @@ services:
 networks:
   proxy:
     external: true
-#getent group docker

@@ -1,5 +1,6 @@
+---
 name: On PR to Main
-on:
+"on":
   pull_request:
     branches: ["main"]
 permissions:
@@ -14,7 +15,8 @@ jobs:
       - name: Find and validate Compose files
         run: |
           shopt -s globstar nullglob
-          files=(**/compose.yml **/compose.yaml **/docker-compose.yml **/docker-compose.yaml)
+          files=(**/compose.yml **/compose.yaml \
+            **/docker-compose.yml **/docker-compose.yaml)
           if [ ${#files[@]} -eq 0 ]; then
             echo "No Compose files found"
             exit 1
@@ -55,7 +57,7 @@ jobs:
           fi
           shellcheck --severity=warning "${files[@]}"
 
-trivy:
+  trivy:
     name: Trivy Security Scan
     runs-on: ubuntu-latest
     steps:
@@ -81,8 +83,9 @@ trivy:
       - uses: actions/checkout@v4
       - name: Install dotenv-linter
         run: |
-          curl -sSfL https://raw.githubusercontent.com/dotenv-linter/dotenv-linter/master/install.sh \
-            | sh -s -- -b /usr/local/bin
+          url="https://raw.githubusercontent.com/dotenv-linter"
+          url="$url/dotenv-linter/master/install.sh"
+          curl -sSfL "$url" | sh -s -- -b /usr/local/bin
       - name: Lint .env files
         run: |
           shopt -s globstar nullglob

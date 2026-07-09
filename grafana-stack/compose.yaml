@@ -10,8 +10,8 @@ services:
     environment:
       - TZ=Europe/Stockholm
       - ALLOY_HOSTNAME=beelink.thenoisykeyboard.com
-    command: 
-      - run 
+    command:
+      - run
       - --server.http.listen-addr=0.0.0.0:12345
       - --storage.path=/var/lib/alloy/data
       - --stability.level=experimental
@@ -30,7 +30,7 @@ services:
       - /var/lib/docker:/var/lib/docker:ro
       - /var/log:/var/log:ro
       - /var/log/journal:/var/log/journal:ro
-      - /var/run/docker.sock:/var/run/docker.sock:ro 
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
       - proxy
 
