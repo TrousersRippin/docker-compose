@@ -1,0 +1,41 @@
+---
+services:
+  arcane:
+    image: ghcr.io/getarcaneapp/manager:latest
+    container_name: arcane
+    hostname: arcane
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=${TZ}
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - APP_URL=${APP_URL}
+      - ENCRYPTION_KEY=${ENCRYPTION_KEY}
+      - OIDC_CLIENT_ID=${OIDC_CLIENT_ID}
+      - OIDC_CLIENT_SECRET=${OIDC_CLIENT_SECRET}
+      - OIDC_ENABLED=${OIDC_ENABLED}
+      - OIDC_ISSUER_URL=${OIDC_ISSUER_URL}
+      - OIDC_MERGE_ACCOUNTS=${OIDC_MERGE_ACCOUNTS}
+      - OIDC_SCOPES=${OIDC_SCOPES}
+      - PROJECTS_DIRECTORY=${PROJECTS_DIRECTORY}
+      - JWT_SECRET=${JWT_SECRET}
+      - TRUSTED_PROXIES=${TRUSTED_PROXIES}
+    group_add:
+      - "987"
+    healthcheck:
+      disable: true
+    ports:
+      - 3552:3552/tcp
+    volumes:
+      - /opt/stacks/arcane/data:/app/data:rw
+      - /opt/stacks:/opt/stacks:rw
+      - /mnt/ssd/backup:/backups:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
