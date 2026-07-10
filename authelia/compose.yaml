@@ -9,10 +9,12 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
+      - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/oidc_hmac_secret
       - AUTHELIA_IDENTITY_VALIDATION_RESET_PASSWORD_JWT_SECRET_FILE=/run/secrets/jwt_secret
       - AUTHELIA_SESSION_SECRET_FILE=/run/secrets/session_secret
-      - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/db_password
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
+      - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/db_password
+      - X_AUTHELIA_CONFIG_FILTERS=template
     healthcheck:
       disable: true
     user: ${UID:-1000}:${GID:-1000}

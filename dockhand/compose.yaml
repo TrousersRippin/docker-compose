@@ -20,6 +20,7 @@ services:
       - 3003:3003/tcp
     volumes:
       - /opt/stacks/dockhand/data:/app/data:rw
+      - /opt/stacks:/opt/stacks:rw
       - /var/run/docker.sock:/var/run/docker.sock
     networks:
       - proxy
