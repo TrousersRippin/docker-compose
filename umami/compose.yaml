@@ -16,6 +16,7 @@ services:
     ports:
       - 3210:3210/tcp
     volumes:
+      - /etc/localtime:/etc/localtime:ro
     networks:
       - proxy
 

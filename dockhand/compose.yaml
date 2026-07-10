@@ -12,6 +12,8 @@ services:
       - PUID=1000
       - PGID=1000
       - PORT=3003
+    group_add:
+      - "987"
     healthcheck:
       disable: true
     ports:
