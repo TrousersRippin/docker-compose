@@ -11,6 +11,10 @@ services:
       - TZ=${TZ}
       - GATUS_CONFIG_PATH=${GATUS_CONFIG_PATH}
       - GATUS_DB_URL=${GATUS_DB_URL}
+      - GATUS_OIDC_CLIENT_ID=${GATUS_OIDC_CLIENT_ID}
+      - GATUS_OIDC_CLIENT_SECRET=${GATUS_OIDC_CLIENT_SECRET}
+      - GATUS_OIDC_ISSUER_URL=${GATUS_OIDC_ISSUER_URL}
+      - GATUS_OIDC_REDIRECT_URL=${GATUS_OIDC_REDIRECT_URL}
       - GATUS_PORT=${GATUS_PORT}
     ports:
       - 8899:8899/tcp
@@ -18,7 +22,6 @@ services:
       - /opt/stacks/gatus/config:/config:ro
     networks:
       - proxy
-
 networks:
   proxy:
     external: true
