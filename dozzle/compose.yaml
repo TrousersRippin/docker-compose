@@ -10,7 +10,7 @@ services:
     environment:
       - TZ=Europe/Stockholm
       - DOZZLE_ADDR=:8008
-      - DOZZLE_ENABLE_ACTIONS=true
+      - DOZZLE_AUTH_PROVIDER=forward-proxy
       - DOZZLE_HOSTNAME=homelab
       - DOZZLE_NO_ANALYTICS=true
     ports:
