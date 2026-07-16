@@ -1,7 +1,7 @@
 ---
 services:
   nginx:
-    image: nginx:alpine
+    image: docker.io/nginx:alpine
     container_name: nginx
     hostname: nginx
     restart: unless-stopped
