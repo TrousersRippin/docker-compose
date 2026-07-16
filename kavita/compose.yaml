@@ -9,12 +9,12 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-    user: ${UID:-1000}:${GID:-1000}
-    ports:
-      - 5000:5000/tcp
     volumes:
       - /opt/stacks/kavita/config:/kavita/config:rw
       - /mnt/ssd/books:/books:ro
+    ports:
+      - 5000:5000/tcp
+    user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
 

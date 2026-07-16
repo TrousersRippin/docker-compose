@@ -12,11 +12,11 @@ services:
       - PUID=1000
       - PGID=1000
       - DARK_MODE=1
-    ports:
-      - 5800:5800/tcp
     volumes:
       - /opt/stacks/mkvtoolnix/config:/config:rw
       - /mnt/ssd:/storage:rw
+    ports:
+      - 5800:5800/tcp
     networks:
       - proxy
 

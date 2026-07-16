@@ -9,16 +9,16 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-    user: ${UID:-1000}:${GID:-1000}
-    healthcheck:
-      disable: true
-    ports:
-      - 8096:8096/tcp
     volumes:
       - /opt/stacks/jellyfin/cache:/cache:rw
       - /opt/stacks/jellyfin/config:/config:rw
       - /mnt/hdd:/data:ro
       - /mnt/ssd/media:/download:rw
+    ports:
+      - 8096:8096/tcp
+    healthcheck:
+      disable: true
+    user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
 

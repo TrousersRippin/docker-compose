@@ -14,14 +14,14 @@ services:
       - FB_PASSWORD=${FB_PASSWORD}
       - FB_PORT=${FB_PORT}
       - FB_USERNAME=${FB_USERNAME}
-    healthcheck:
-      disable: true
-    ports:
-      - 8005:8005/tcp
     volumes:
       - /opt/stacks/filebrowser/config:/config:rw
       - /opt/stacks/filebrowser/database:/database:rw
       - /:/srv:rw
+    ports:
+      - 8005:8005/tcp
+    healthcheck:
+      disable: true
     networks:
       - proxy
 

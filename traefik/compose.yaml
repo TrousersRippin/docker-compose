@@ -11,16 +11,16 @@ services:
       - TZ=${TZ}
       - CF_API_EMAIL=${CF_API_EMAIL}
       - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
-    ports:
-      - 8080:8080/tcp
-      - 80:80/tcp
-      - 443:443/tcp
     volumes:
       - /opt/stacks/traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro
       - /opt/stacks/traefik/config/dynamic.yml:/etc/traefik/dynamic.yml:ro
       - /opt/stacks/traefik/config/log:/var/log/traefik:rw
       - /opt/stacks/traefik/data:/etc/traefik/data:rw
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8080:8080/tcp
+      - 80:80/tcp
+      - 443:443/tcp
     networks:
       - proxy
 

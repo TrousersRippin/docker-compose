@@ -21,13 +21,13 @@ services:
       - GOTIFY_OIDC_AUTOREGISTER=${GOTIFY_OIDC_AUTOREGISTER}
       - GOTIFY_OIDC_USERNAMECLAIM=${GOTIFY_OIDC_USERNAMECLAIM}
       - GOTIFY_SERVER_PORT=${GOTIFY_SERVER_PORT}
+    volumes:
+      - /opt/stacks/gotify/config:/app/data:rw
+    ports:
+      - 8001:8001/tcp
     healthcheck:
       disable: true
     user: ${UID:-1000}:${GID:-1000}
-    ports:
-      - 8001:8001/tcp
-    volumes:
-      - /opt/stacks/gotify/config:/app/data:rw
     networks:
       - proxy
 

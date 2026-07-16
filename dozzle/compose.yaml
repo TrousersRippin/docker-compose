@@ -13,12 +13,13 @@ services:
       - DOZZLE_AUTH_PROVIDER=forward-proxy
       - DOZZLE_HOSTNAME=homelab
       - DOZZLE_NO_ANALYTICS=true
-    ports:
-      - 8008:8008/tcp
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8008:8008/tcp
     networks:
       - proxy
+
 networks:
   proxy:
     external: true

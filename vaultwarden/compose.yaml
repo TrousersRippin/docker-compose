@@ -9,6 +9,8 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=${TZ}
+      - UID=${UID:-1000}
+      - GID=${GID:-1000}
       - ADMIN_TOKEN=${ADMIN_TOKEN}
       - DATABASE_URL=${DATABASE_URL}
       - DOMAIN=${DOMAIN}
@@ -28,16 +30,21 @@ services:
       - SMTP_PORT=${SMTP_PORT}
       - SMTP_SECURITY=${SMTP_SECURITY}
       - SMTP_USERNAME=${SMTP_USERNAME}
+      - SSO_AUTHORITY=${SSO_AUTHORITY}
+      - SSO_CLIENT_ID=${SSO_CLIENT_ID}
+      - SSO_CLIENT_SECRET=${SSO_CLIENT_SECRET}
+      - SSO_ENABLED=${SSO_ENABLED}
+      - SSO_ONLY=${SSO_ONLY}
+      - SSO_PKCE=${SSO_PKCE}
+      - SSO_SCOPES=${SSO_SCOPES}
       - WEBSOCKET_ENABLED=${WEBSOCKET_ENABLED}
-      - UID=${UID:-1000}
-      - GID=${GID:-1000}
+    volumes:
+      - /opt/stacks/vaultwarden/data:/data:rw
+    ports:
+      - 8877:8877/tcp
     healthcheck:
       disable: true
     user: ${UID:-1000}:${GID:-1000}
-    ports:
-      - 8877:8877/tcp
-    volumes:
-      - /opt/stacks/vaultwarden/data:/data:rw
     networks:
       - proxy
 

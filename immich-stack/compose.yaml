@@ -29,12 +29,12 @@ services:
       - DB_PORT=${DB_PORT}
       - DB_USERNAME=${DB_USERNAME}
       - REDIS_HOSTNAME=${REDIS_HOSTNAME}
-    ports:
-      - 2283:2283/tcp
     volumes:
       - /opt/stacks/immich/upload:/usr/src/app/upload:rw
       - /opt/stacks/immich/data:/data:rw
       - /mnt/hdd/photos:/usr/src/app/photos:ro
+    ports:
+      - 2283:2283/tcp
     depends_on:
       - redis
     networks:

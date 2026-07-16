@@ -43,15 +43,15 @@ services:
       - PAPERLESS_TIME_ZONE=${PAPERLESS_TIME_ZONE}
       - PAPERLESS_URL=${PAPERLESS_URL}
       - PAPERLESS_WEBSERVER_WORKERS=${PAPERLESS_WEBSERVER_WORKERS}
-    healthcheck:
-      disable: true
-    ports:
-      - 8124:8124/tcp
     volumes:
       - /opt/stacks/paperless/consume:/usr/src/paperless/consume:rw
       - /opt/stacks/paperless/data:/usr/src/paperless/data:rw
       - /opt/stacks/paperless/export:/usr/src/paperless/export:rw
       - /opt/stacks/paperless/media:/usr/src/paperless/media:rw
+    ports:
+      - 8124:8124/tcp
+    healthcheck:
+      disable: true
     depends_on:
       - redis
     networks:

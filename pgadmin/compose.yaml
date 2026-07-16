@@ -11,10 +11,10 @@ services:
       - TZ=${TZ}
       - PGADMIN_DEFAULT_EMAIL=${PGADMIN_DEFAULT_EMAIL}
       - PGADMIN_DEFAULT_PASSWORD=${PGADMIN_DEFAULT_PASSWORD}
-    ports:
-      - 5050:80/tcp
     volumes:
       - /opt/stacks/pgadmin/data:/var/lib/pgadmin
+    ports:
+      - 5050:80/tcp
     networks:
       - proxy
 

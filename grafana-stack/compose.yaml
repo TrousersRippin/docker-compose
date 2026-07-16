@@ -15,11 +15,7 @@ services:
       - --server.http.listen-addr=0.0.0.0:12345
       - --storage.path=/var/lib/alloy/data
       - --stability.level=experimental
-      - /etc/alloy/config.alloy
-    user: 0:0
-    ports:
-      - 12345:12345/tcp
-      - 5514:5514/udp
+      - /etc/alloy/config.alloy    
     volumes:
       - /opt/stacks/alloy/config/config.alloy:/etc/alloy/config.alloy:ro
       - alloy-data:/var/lib/alloy/data:rw
@@ -31,6 +27,10 @@ services:
       - /var/log:/var/log:ro
       - /var/log/journal:/var/log/journal:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 12345:12345/tcp
+      - 5514:5514/udp
+    user: 0:0
     networks:
       - proxy
 
@@ -42,15 +42,15 @@ services:
     stop_grace_period: 1m
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
     command:
       - --config.file=/etc/loki/loki.yaml
-    ports:
-      - 3100:3100/tcp
+    environment:
+      - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/loki/config/loki.yaml:/etc/loki/loki.yaml:ro
       - loki-data:/loki:rw
+    ports:
+      - 3100:3100/tcp
     depends_on:
       - alloy
     networks:
@@ -83,11 +83,11 @@ services:
       - GF_AUTH_GENERIC_OAUTH_SCOPES=${GF_AUTH_GENERIC_OAUTH_SCOPES}
       - GF_AUTH_GENERIC_OAUTH_TOKEN_URL=${GF_AUTH_GENERIC_OAUTH_TOKEN_URL}
       - GF_AUTH_GENERIC_OAUTH_USE_PKCE=${GF_AUTH_GENERIC_OAUTH_USE_PKCE}
-    ports:
-      - 3333:3333/tcp
     volumes:
       - /opt/stacks/grafana/config:/etc/grafana:ro
       - grafana-data:/var/lib/grafana:rw
+    ports:
+      - 3333:3333/tcp
     depends_on:
       - loki
     networks:

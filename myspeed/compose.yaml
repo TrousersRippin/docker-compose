@@ -9,10 +9,10 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-    ports:
-      - 5216:5216/tcp
     volumes:
       - /opt/stacks/myspeed/data:/myspeed/data:rw
+    ports:
+      - 5216:5216/tcp
     networks:
       - proxy
 

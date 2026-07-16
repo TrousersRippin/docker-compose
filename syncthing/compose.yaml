@@ -11,14 +11,14 @@ services:
       - TZ=Europe/Stockholm
       - PUID=1000
       - PGID=1000
+    volumes:
+      - /opt/stacks/syncthing:/var/syncthing:rw
+      - $HOME:/var/syncthing/home:rw
     ports:
       - 8384:8384/tcp
       - 21027:21027/udp
       - 22000:22000/tcp
       - 22000:22000/udp
-    volumes:
-      - /opt/stacks/syncthing:/var/syncthing:rw
-      - $HOME:/var/syncthing/home:rw
     networks:
       - proxy
 

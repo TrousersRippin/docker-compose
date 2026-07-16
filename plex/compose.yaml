@@ -10,12 +10,15 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
+      - PLEX_CLAIM=claim-z44nCEJ4ks9JJT486d4a
       - PLEX_UID=1000
       - PLEX_GID=1000
       - VERSION=docker
-      - PLEX_CLAIM=claim-z44nCEJ4ks9JJT486d4a
-    healthcheck:
-      disable: true
+    volumes:
+      - /opt/stacks/plex:/config:rw
+      - /opt/stacks/plex:/transcode:rw
+      - /mnt/hdd:/data:ro
+      - /mnt/ssd/media:/download:rw
     ports:
       - 32400:32400/tcp
       - 1900:1900/udp
@@ -26,8 +29,5 @@ services:
       - 32412:32412/udp
       - 32413:32413/udp
       - 32414:32414/udp
-    volumes:
-      - /opt/stacks/plex:/config:rw
-      - /opt/stacks/plex:/transcode:rw
-      - /mnt/hdd:/data:ro
-      - /mnt/ssd/media:/download:rw
+    healthcheck:
+      disable: true

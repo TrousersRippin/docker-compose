@@ -10,10 +10,6 @@ services:
     environment:
       - TZ=${TZ}
       - HOMEPAGE_ALLOWED_HOSTS=${HOMEPAGE_ALLOWED_HOSTS}
-    healthcheck:
-      disable: true
-    ports:
-      - 3000:3000/tcp
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw
@@ -21,6 +17,10 @@ services:
       - /mnt/ssd:/mnt/ssd:ro
       - /:/host:ro
       - /sys/class/thermal:/sys/class/thermal:ro
+    ports:
+      - 3000:3000/tcp
+    healthcheck:
+      disable: true
     networks:
       - proxy
 

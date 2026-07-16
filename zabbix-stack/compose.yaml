@@ -13,13 +13,13 @@ services:
       - POSTGRES_DB=${POSTGRES_DB}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_USER=${POSTGRES_USER}
-    ports:
-      - 10051:10051/tcp
     volumes:
       - /opt/stacks/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:rw
       - /opt/stacks/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:rw
       - /opt/stacks/zabbix/export:/var/lib/zabbix/export:rw
       - /opt/stacks/zabbix/snmptraps:/var/lib/zabbix/snmptraps:rw
+    ports:
+      - 10051:10051/tcp
     networks:
       - proxy
 
@@ -38,11 +38,10 @@ services:
       - POSTGRES_USER=${POSTGRES_USER}
       - PHP_TZ=${TZ}
       - ZBX_SERVER_HOST=${ZBX_SERVER_HOST}
-    healthcheck:
-      disable: true
     ports:
       - 8765:8080/tcp
-    volumes:
+    healthcheck:
+      disable: true
     depends_on:
       - zabbix-backend
     networks:
@@ -59,7 +58,6 @@ services:
       - TZ=${TZ}
       - ZBX_HOSTNAME=${ZBX_HOSTNAME}
       - ZBX_SERVER_HOST=${ZBX_SERVER_HOST}
-    volumes:
     depends_on:
       - zabbix-backend
     networks:

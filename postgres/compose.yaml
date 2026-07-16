@@ -7,15 +7,15 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    command: postgres --hba-file=/etc/postgresql/pg_hba.conf
     environment:
       - TZ=${TZ}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-    command: postgres --hba-file=/etc/postgresql/pg_hba.conf
-    ports:
-      - 5432:5432/tcp
     volumes:
       - /opt/stacks/postgres/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
       - postgres-data:/var/lib/postgresql:rw
+    ports:
+      - 5432:5432/tcp
     networks:
       - proxy
 
@@ -23,7 +23,6 @@ volumes:
   postgres-data:
     name: postgres-data
     external: true
-
 
 networks:
   proxy:

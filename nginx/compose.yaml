@@ -9,13 +9,13 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-    ports:
-      - 8800:80/tcp
-      - 8443:443/tcp
     volumes:
       - /opt/stacks/nginx/config/nginx.conf:/etc/nginx/nginx.conf:ro
       - /opt/stacks/nginx/config/html:/usr/share/nginx/html:ro
       - /opt/stacks/nginx/config/certs:/etc/nginx/certs:ro
+    ports:
+      - 8800:80/tcp
+      - 8443:443/tcp
     networks:
       - proxy
 

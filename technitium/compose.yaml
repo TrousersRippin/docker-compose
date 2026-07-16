@@ -18,17 +18,13 @@ services:
       - DNS_SERVER_RECURSION=${DNS_SERVER_RECURSION}
       - DOTNET_GCConserveMemory=9
       - DOTNET_gcServer=0
+    volumes:
+      - /opt/stacks/technitium/config:/etc/dns:rw
     ports:
       - 5380:5380/tcp
       - 53:53/tcp
       - 53:53/udp
       - 53443:53443/tcp
-      # - 853:853/udp      # DNS-over-QUIC
-      # - 853:853/tcp      # DNS-over-TLS
-      # - 443:443/udp      # DNS-over-HTTPS (HTTP/3)
-      # - 443:443/tcp      # DNS-over-HTTPS (HTTP/1.1, HTTP/2)
-    volumes:
-      - /opt/stacks/technitium/config:/etc/dns:rw
     networks:
       - proxy
 

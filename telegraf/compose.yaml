@@ -6,6 +6,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    command: ["--non-strict-env-handling"]
     environment:
       - TZ=Europe/Stockholm
       - HOST_ETC=/hostfs/etc
@@ -14,18 +15,15 @@ services:
       - HOST_VAR=/hostfs/var
       - HOST_RUN=/hostfs/run
       - HOST_MOUNT_PREFIX=/hostfs
-    command: ["--non-strict-env-handling"]
-    user: ${UID:-1000}:${GID:-1000}
-    group_add:
-      # find gid with: getent group docker
-      - "987"
-    ports:
-      - 8125:8125/tcp
-      - 9273:9273/tcp
     volumes:
       - /opt/stacks/telegraf/config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /:/hostfs:ro
       - /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      - 8125:8125/tcp
+      - 9273:9273/tcp
+    user: ${UID:-1000}:${GID:-1000}
+    group_add: [987]
     networks:
       - proxy
 

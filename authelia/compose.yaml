@@ -7,6 +7,11 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+    command:
+      - authelia
+      - --config=/config/configuration.yml
+      - --config=/config/configuration.acl.yml
+      - --config=/config/configuration.oidc.yml
     environment:
       - TZ=Europe/Stockholm
       - AUTHELIA_IDENTITY_PROVIDERS_OIDC_HMAC_SECRET_FILE=/run/secrets/oidc_hmac_secret
@@ -15,14 +20,14 @@ services:
       - AUTHELIA_STORAGE_ENCRYPTION_KEY_FILE=/run/secrets/encryption_key
       - AUTHELIA_STORAGE_POSTGRES_PASSWORD_FILE=/run/secrets/db_password
       - X_AUTHELIA_CONFIG_FILTERS=template
-    healthcheck:
-      disable: true
-    user: ${UID:-1000}:${GID:-1000}
-    ports:
-      - 9094:9094/tcp
     volumes:
       - /opt/stacks/authelia/config:/config:rw
       - /opt/stacks/authelia/secrets:/run/secrets:ro
+    ports:
+      - 9094:9094/tcp
+    healthcheck:
+      disable: true
+    user: ${UID:-1000}:${GID:-1000}      
     networks:
       - proxy
 

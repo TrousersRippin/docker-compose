@@ -7,19 +7,19 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --web.enable-remote-write-receiver
       - --web.enable-lifecycle
       - --web.enable-admin-api
-    user: 65534:65534
-    ports:
-      - 9090:9090/tcp
+    environment:
+      - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/prometheus/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
       - prometheus-data:/prometheus:rw
+    ports:
+      - 9090:9090/tcp    
+    user: 65534:65534
     networks:
       - proxy
 
@@ -27,7 +27,6 @@ volumes:
   prometheus-data:
     name: prometheus-data
     external: true
-
 
 networks:
   proxy:
