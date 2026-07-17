@@ -7,10 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - MEMOS_DRIVER=${MEMOS_DRIVER}
-      - MEMOS_DSN=${MEMOS_DSN}
+    env_file: .env
     volumes:
       - /opt/stacks/memos/config:/var/opt/memos:rw
     ports:

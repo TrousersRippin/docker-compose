@@ -7,12 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - APP_SECRET=${APP_SECRET}
-      - DATABASE_TYPE=${DATABASE_TYPE}
-      - DATABASE_URL=${DATABASE_URL}
-      - PORT=${PORT}
+    env_file: .env
     ports:
       - 3210:3210/tcp
     networks:

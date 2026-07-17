@@ -8,8 +8,8 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=${TZ}
-      - HOMEPAGE_ALLOWED_HOSTS=${HOMEPAGE_ALLOWED_HOSTS}
+      - TZ=Europe/Stockholm
+      - HOMEPAGE_ALLOWED_HOSTS=*
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw

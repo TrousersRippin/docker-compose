@@ -7,13 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - FB_PASSWORD=${FB_PASSWORD}
-      - FB_PORT=${FB_PORT}
-      - FB_USERNAME=${FB_USERNAME}
+    env_file: .env
     volumes:
       - /opt/stacks/filebrowser/config:/config:rw
       - /opt/stacks/filebrowser/database:/database:rw

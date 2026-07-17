@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=${TZ}
+      - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/redis/data:/data:rw
     networks:
@@ -21,28 +21,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - PAPERLESS_ADMIN_EMAIL=${PAPERLESS_ADMIN_EMAIL}
-      - PAPERLESS_ADMIN_PASSWORD=${PAPERLESS_ADMIN_PASSWORD}
-      - PAPERLESS_ADMIN_USER=${PAPERLESS_ADMIN_USER}
-      - PAPERLESS_CONVERT_MEMORY_LIMIT=${PAPERLESS_CONVERT_MEMORY_LIMIT}
-      - PAPERLESS_DBENGINE=${PAPERLESS_DBENGINE}
-      - PAPERLESS_DBHOST=${PAPERLESS_DBHOST}
-      - PAPERLESS_DBNAME=${PAPERLESS_DBNAME}
-      - PAPERLESS_DBPASS=${PAPERLESS_DBPASS}
-      - PAPERLESS_DBPORT=${PAPERLESS_DBPORT}
-      - PAPERLESS_DBUSER=${PAPERLESS_DBUSER}
-      - PAPERLESS_OCR_LANGUAGE=${PAPERLESS_OCR_LANGUAGE}
-      - PAPERLESS_OCR_SKIP_ARCHIVE_FILE=${PAPERLESS_OCR_SKIP_ARCHIVE_FILE}
-      - PAPERLESS_PORT=${PAPERLESS_PORT}
-      - PAPERLESS_REDIS=${PAPERLESS_REDIS}
-      - PAPERLESS_SECRET_KEY=${PAPERLESS_SECRET_KEY}
-      - PAPERLESS_TASK_WORKERS=${PAPERLESS_TASK_WORKERS}
-      - PAPERLESS_THREADS_PER_WORKER=${PAPERLESS_THREADS_PER_WORKER}
-      - PAPERLESS_TIME_ZONE=${PAPERLESS_TIME_ZONE}
-      - PAPERLESS_URL=${PAPERLESS_URL}
-      - PAPERLESS_WEBSERVER_WORKERS=${PAPERLESS_WEBSERVER_WORKERS}
+    env_file: .env
     volumes:
       - /opt/stacks/paperless/consume:/usr/src/paperless/consume:rw
       - /opt/stacks/paperless/data:/usr/src/paperless/data:rw

@@ -12,14 +12,7 @@ services:
       options:
         max-file: 5
         max-size: 10m
-    environment:
-      - TZ=${TZ}
-      - JWT_SECRET=${JWT_SECRET}
-      - POSTGRES_DB=${POSTGRES_DB}
-      - POSTGRES_IP=${POSTGRES_IP}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_PORT=${POSTGRES_PORT}
-      - POSTGRES_USER=${POSTGRES_USER}
+    env_file: .env
     volumes:
       - /opt/stacks/jellystat/data:/app/backend/backup-data
     ports:

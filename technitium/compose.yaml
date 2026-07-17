@@ -9,15 +9,7 @@ services:
       - no-new-privileges:true
     sysctls:
       - net.ipv4.ip_local_port_range=1024 65000
-    environment:
-      - TZ=${TZ}
-      - DNS_SERVER_ADMIN_PASSWORD=${DNS_SERVER_ADMIN_PASSWORD}
-      - DNS_SERVER_DOMAIN=${DNS_SERVER_DOMAIN}
-      - DNS_SERVER_FORWARDERS=${DNS_SERVER_FORWARDERS}
-      - DNS_SERVER_PREFER_IPV6=${DNS_SERVER_PREFER_IPV6}
-      - DNS_SERVER_RECURSION=${DNS_SERVER_RECURSION}
-      - DOTNET_GCConserveMemory=9
-      - DOTNET_gcServer=0
+    env_file: .env
     volumes:
       - /opt/stacks/technitium/config:/etc/dns:rw
     ports:

@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=${TZ}
+      - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/redis/data:/data:rw
     networks:
@@ -21,14 +21,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - DB_DATABASE_NAME=${DB_DATABASE_NAME}
-      - DB_HOSTNAME=${DB_HOSTNAME}
-      - DB_PASSWORD=${DB_PASSWORD}
-      - DB_PORT=${DB_PORT}
-      - DB_USERNAME=${DB_USERNAME}
-      - REDIS_HOSTNAME=${REDIS_HOSTNAME}
+    env_file: .env
     volumes:
       - /opt/stacks/immich/upload:/usr/src/app/upload:rw
       - /opt/stacks/immich/data:/data:rw
