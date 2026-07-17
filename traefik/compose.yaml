@@ -7,10 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=${TZ}
-      - CF_API_EMAIL=${CF_API_EMAIL}
-      - CF_DNS_API_TOKEN=${CF_DNS_API_TOKEN}
+    env_file: .env
     volumes:
       - /opt/stacks/traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro
       - /opt/stacks/traefik/config/dynamic.yml:/etc/traefik/dynamic.yml:ro

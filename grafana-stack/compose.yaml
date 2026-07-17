@@ -7,9 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-      - ALLOY_HOSTNAME=beelink.thenoisykeyboard.com
+    env_file: .env
     command:
       - run
       - --server.http.listen-addr=0.0.0.0:12345
