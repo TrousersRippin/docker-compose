@@ -8,12 +8,7 @@ services:
     network_mode: host
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-      - PLEX_CLAIM=claim-z44nCEJ4ks9JJT486d4a
-      - PLEX_UID=1000
-      - PLEX_GID=1000
-      - VERSION=docker
+    env_file: .env
     volumes:
       - /opt/stacks/plex:/config:rw
       - /opt/stacks/plex:/transcode:rw
