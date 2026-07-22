@@ -7,12 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-      - DOZZLE_ADDR=:8008
-      - DOZZLE_AUTH_PROVIDER=forward-proxy
-      - DOZZLE_HOSTNAME=homelab
-      - DOZZLE_NO_ANALYTICS=true
+    env_file: .env
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
