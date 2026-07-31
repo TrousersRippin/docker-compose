@@ -1,7 +1,7 @@
 ---
 services:
   filebrowser:
-    image: docker.io/filebrowser/filebrowser:latest
+    image: ghcr.io/gtsteffaniak/filebrowser:latest
     container_name: filebrowser
     hostname: filebrowser
     restart: unless-stopped
@@ -9,13 +9,15 @@ services:
       - no-new-privileges:true
     env_file: .env
     volumes:
-      - /opt/stacks/filebrowser/config:/config:rw
-      - /opt/stacks/filebrowser/database:/database:rw
-      - /:/srv:rw
+      - /opt/stacks/filebrowser/data:/home/filebrowser/data:rw
+      - /home/troy:/mnt/home-troy:rw
+      - /mnt:/mnt/host-mnt:rw
+      - /opt/stacks:/mnt/host-opt:rw
     ports:
       - 8005:8005/tcp
     healthcheck:
       disable: true
+    user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
 
