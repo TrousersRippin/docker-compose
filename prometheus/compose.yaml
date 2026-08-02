@@ -19,7 +19,7 @@ services:
       - /opt/stacks/prometheus/certs:/etc/prometheus/certs:ro
       - prometheus-data:/prometheus:rw
     ports:
-      - 9090:9090/tcp    
+      - 9090:9090/tcp
     user: 65534:65534
     networks:
       - proxy
