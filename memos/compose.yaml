@@ -12,6 +12,7 @@ services:
       - /opt/stacks/memos/config:/var/opt/memos:rw
     ports:
       - 5230:5230/tcp
+    user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
 
