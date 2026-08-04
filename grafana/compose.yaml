@@ -1,0 +1,26 @@
+---
+services:
+  grafana:
+    image: docker.io/grafana/grafana:latest
+    container_name: grafana
+    hostname: grafana
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    volumes:
+      - /opt/stacks/grafana/config:/etc/grafana:ro
+      - grafana-data:/var/lib/grafana:rw
+    ports:
+      - 3333:3333/tcp
+    networks:
+      - proxy
+
+volumes:
+  grafana-data:
+    name: grafana-data
+    external: true
+
+networks:
+  proxy:
+    external: true

@@ -1,0 +1,23 @@
+---
+services:
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    container_name: seerr
+    hostname: seerr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - /opt/stacks/seerr/config:/app/config:rw
+    ports:
+      - 5055:5055/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

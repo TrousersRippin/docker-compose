@@ -1,0 +1,30 @@
+---
+services:
+  loki:
+    image: docker.io/grafana/loki:latest
+    container_name: loki
+    hostname: loki
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    stop_grace_period: 1m
+    command:
+      - --config.file=/etc/loki/loki.yaml
+    environment:
+      - TZ=Europe/Stockholm
+    volumes:
+      - /opt/stacks/loki/config/loki.yaml:/etc/loki/loki.yaml:ro
+      - loki-data:/loki:rw
+    ports:
+      - 3100:3100/tcp
+    networks:
+      - proxy
+
+volumes:
+  loki-data:
+    name: loki-data
+    external: true
+
+networks:
+  proxy:
+    external: true

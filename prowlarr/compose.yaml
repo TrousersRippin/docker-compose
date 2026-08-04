@@ -1,0 +1,25 @@
+---
+services:
+  prowlarr:
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr
+    hostname: prowlarr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - PUID=1000
+      - PGID=1000
+      - DOTNET_GCConserveMemory=9
+      - DOTNET_gcServer=0
+    volumes:
+      - /opt/stacks/prowlarr/config:/config:rw
+    ports:
+      - 9696:9696/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

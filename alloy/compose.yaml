@@ -1,0 +1,43 @@
+---
+services:
+  alloy:
+    image: docker.io/grafana/alloy:latest
+    container_name: alloy
+    hostname: homelab
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command:
+      - run
+      - --server.http.listen-addr=0.0.0.0:12345
+      - --storage.path=/var/lib/alloy/data
+      - --stability.level=experimental
+      - /etc/alloy/config.alloy
+    environment:
+      - TZ=Europe/Stockholm
+    volumes:
+      - /opt/stacks/alloy/config/config.alloy:/etc/alloy/config.alloy:ro
+      - alloy-data:/var/lib/alloy/data:rw
+      - /:/rootfs:ro
+      - /run:/run:ro
+      - /run/udev/data:/run/udev/data:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /var/log:/var/log:ro
+      - /var/log/journal:/var/log/journal:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    ports:
+      - 12345:12345/tcp
+      - 5514:5514/udp
+    user: 0:0
+    networks:
+      - proxy
+
+volumes:
+  alloy-data:
+    name: alloy-data
+    external: true
+
+networks:
+  proxy:
+    external: true
