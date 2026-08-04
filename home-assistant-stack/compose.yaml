@@ -31,11 +31,11 @@ services:
     environment:
       - TZ=Europe/Stockholm
       - Z2M_WATCHDOG=1
-    ports:
-      - 8888:8888/tcp
     volumes:
       - /opt/stacks/zigbee2mqtt/config:/app/data:rw
       - /run/udev:/run/udev:ro
+    ports:
+      - 8888:8888/tcp
     user: ${UID:-1000}:${GID:-1000}
     group_add: [dialout]
     devices:
