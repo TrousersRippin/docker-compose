@@ -14,7 +14,7 @@ services:
         max-size: 10m
     env_file: .env
     volumes:
-      - /opt/stacks/jellystat/data:/app/backend/backup-data
+      - /opt/stacks/jellystat/data:/app/backend/backup-data:rw
     ports:
       - 3498:3000/tcp
     healthcheck:

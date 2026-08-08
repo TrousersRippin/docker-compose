@@ -9,7 +9,7 @@ services:
       - no-new-privileges:true
     env_file: .env
     volumes:
-      - /opt/stacks/pgadmin/data:/var/lib/pgadmin
+      - /opt/stacks/pgadmin/data:/var/lib/pgadmin:rw
     ports:
       - 5050:80/tcp
     networks:
