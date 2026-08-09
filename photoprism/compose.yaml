@@ -1,0 +1,21 @@
+---
+services:
+  photoprism:
+    image: docker.io/photoprism/photoprism:latest
+    container_name: photoprism
+    hostname: photoprism
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    volumes:
+      - /opt/stacks/photoprism/storage:/photoprism/storage:rw
+      - /mnt/ssd/media/photos:/photoprism/originals:ro
+    ports:
+      - 2342:2342/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
