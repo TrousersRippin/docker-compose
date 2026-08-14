@@ -13,7 +13,7 @@ services:
     volumes:
       - /opt/stacks/audiobookshelf/config:/config:rw
       - /opt/stacks/audiobookshelf/metadata:/metadata:rw
-      - /mnt/ssd/media/books:/audiobooks:ro
+      - /mnt/hdd/books:/audiobooks:ro
     ports:
       - 13378:13378/tcp
     user: ${UID:-1000}:${GID:-1000}
