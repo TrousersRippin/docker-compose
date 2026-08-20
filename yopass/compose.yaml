@@ -1,0 +1,18 @@
+---
+services:
+  yopass:
+    image: docker.io/jhaals/yopass:latest
+    container_name: yopass
+    hostname: yopass
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    ports:
+      - 1337:1337/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

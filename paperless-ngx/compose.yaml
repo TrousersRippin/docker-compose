@@ -1,19 +1,5 @@
 ---
 services:
-  redis:
-    image: docker.io/library/redis:latest
-    container_name: redis
-    hostname: redis
-    restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-    volumes:
-      - /opt/stacks/redis/data:/data:rw
-    networks:
-      - proxy
-
   paperless-ngx:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
     container_name: paperless-ngx

@@ -1,0 +1,21 @@
+---
+services:
+  redis:
+    image: docker.io/library/redis:latest
+    container_name: redis
+    hostname: redis
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]
+    environment:
+      - TZ=Europe/Stockholm
+    volumes:
+      - /opt/stacks/redis/config/redis.conf:/usr/local/etc/redis/redis.conf:ro
+      - /opt/stacks/redis/data:/data:rw
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
