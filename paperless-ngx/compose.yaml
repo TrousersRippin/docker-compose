@@ -1,9 +1,9 @@
 ---
 services:
-  paperless-ngx:
+  paperless:
     image: ghcr.io/paperless-ngx/paperless-ngx:latest
-    container_name: paperless-ngx
-    hostname: paperless-ngx
+    container_name: paperless
+    hostname: paperless
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
@@ -17,8 +17,6 @@ services:
       - 8124:8124/tcp
     healthcheck:
       disable: true
-    depends_on:
-      - redis
     networks:
       - proxy
 

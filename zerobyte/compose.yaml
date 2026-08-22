@@ -1,0 +1,24 @@
+---
+services:
+  zerobyte:
+    image: ghcr.io/nicotsx/zerobyte:latest
+    container_name: zerobyte
+    hostname: zerobyte
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    volumes:
+      - /opt/stacks/zerobyte:/var/lib/zerobyte:rw
+      - /home/troy/.config/rclone:/home/troy/.config/rclone:ro
+      - /mnt/ssd/restic:/ssd/backup:rw
+      - /opt/stacks:/data:rw
+    ports:
+      - 4096:4096/tcp
+    user: ${UID:-1000}:${GID:-1000}
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
