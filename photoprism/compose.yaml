@@ -9,7 +9,7 @@ services:
       - no-new-privileges:true
     env_file: .env
     volumes:
-      - /opt/stacks/photoprism/storage:/photoprism/storage:rw
+      - /opt/stacks/photoprism/data:/photoprism/storage:rw
       - /mnt/ssd/media/photos:/photoprism/originals:ro
     ports:
       - 2342:2342/tcp

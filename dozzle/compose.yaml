@@ -9,7 +9,7 @@ services:
       - no-new-privileges:true
     env_file: .env
     volumes:
-      - /opt/stacks/dozzle/data:/data:rw
+      - /opt/stacks/dozzle/config:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
       - 8008:8008/tcp
