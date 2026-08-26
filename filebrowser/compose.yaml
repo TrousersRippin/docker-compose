@@ -21,6 +21,7 @@ services:
     user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
+
 networks:
   proxy:
     external: true

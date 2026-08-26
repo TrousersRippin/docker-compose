@@ -9,10 +9,11 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
+      - REFRESH_TOKEN_EXPIRY=31536000
       - PORT=13378
     volumes:
       - /opt/stacks/audiobookshelf/config:/config:rw
-      - /opt/stacks/audiobookshelf/metadata:/metadata:rw
+      - /opt/stacks/audiobookshelf/data:/metadata:rw
       - /mnt/ssd/media/books:/audiobooks:ro
     ports:
       - 13378:13378/tcp
