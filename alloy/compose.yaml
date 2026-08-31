@@ -3,7 +3,7 @@ services:
   alloy:
     image: docker.io/grafana/alloy:latest
     container_name: alloy
-    hostname: homelab
+    hostname: zimacube
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
