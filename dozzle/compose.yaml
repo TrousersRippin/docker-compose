@@ -1,7 +1,7 @@
 ---
 services:
   dozzle:
-    image: ghcr.io/amir20/dozzle:latest
+    image: ghcr.io/amir20/dozzle:v10.8.0
     container_name: dozzle
     hostname: dozzle
     restart: unless-stopped

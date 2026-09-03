@@ -1,0 +1,21 @@
+---
+services:
+  speedtest-tracker:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    container_name: speedtest-tracker
+    hostname: speedtest-tracker
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    env_file: .env
+    volumes:
+      - /opt/stacks/speedtest-tracker/config:/config:rw
+    ports:
+      - 8280:80/tcp
+      - 8543:443/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

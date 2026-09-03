@@ -13,6 +13,8 @@ services:
     volumes:
       - /opt/stacks/redis/config/redis.conf:/usr/local/etc/redis/redis.conf:ro
       - /opt/stacks/redis/data:/data:rw
+    ports:
+      - 6379:6379/tcp
     user: ${UID:-1000}:${GID:-1000}
     networks:
       - proxy
