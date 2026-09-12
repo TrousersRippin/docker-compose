@@ -10,8 +10,8 @@ services:
     env_file: .env
     volumes:
       - /opt/stacks/traefik/config:/etc/traefik:ro
-      - /opt/stacks/traefik/log:/var/log/traefik:rw
       - /opt/stacks/traefik/data:/data:rw
+      - /opt/stacks/traefik/log:/var/log/traefik:rw
     ports:
       - 80:80/tcp
       - 443:443/tcp

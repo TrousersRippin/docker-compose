@@ -14,8 +14,8 @@ services:
       - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/mosquitto/config:/mosquitto/config:rw
-      - /opt/stacks/mosquitto/config/log:/mosquitto/log:rw
       - /opt/stacks/mosquitto/data:/mosquitto/data:rw
+      - /opt/stacks/mosquitto/log:/mosquitto/log:rw
     ports:
       - 1883:1883/tcp
     user: ${UID:-1000}:${GID:-1000}
