@@ -14,7 +14,7 @@ services:
       - /opt/stacks/paperless/export:/usr/src/paperless/export:rw
       - /opt/stacks/paperless/media:/usr/src/paperless/media:rw
     ports:
-      - 8124:8124/tcp
+      - 8000:8000/tcp
     healthcheck:
       disable: true
     networks:

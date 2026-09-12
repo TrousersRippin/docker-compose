@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/stacks/vaultwarden/config:/data:rw
     ports:
-      - 8877:8877/tcp
+      - 8003:80/tcp
     healthcheck:
       disable: true
     user: ${UID:-1000}:${GID:-1000}

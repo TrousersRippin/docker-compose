@@ -27,7 +27,7 @@ services:
       - no-new-privileges:true
     env_file: .env
     ports:
-      - 8765:8080/tcp
+      - 8081:8080/tcp
     healthcheck:
       disable: true
     depends_on:
@@ -43,6 +43,8 @@ services:
     security_opt:
       - no-new-privileges:true
     env_file: .env
+    ports:
+      - 10050:10050/tcp
     depends_on:
       - zabbix-backend
     networks:

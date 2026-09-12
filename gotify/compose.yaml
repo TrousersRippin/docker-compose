@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/stacks/gotify/config:/app/data:rw
     ports:
-      - 8001:8001/tcp
+      - 8001:80/tcp
     healthcheck:
       disable: true
     user: ${UID:-1000}:${GID:-1000}

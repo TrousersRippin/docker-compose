@@ -9,10 +9,9 @@ services:
       - no-new-privileges:true
     env_file: .env
     volumes:
-      - /opt/stacks/traefik/config/traefik.yml:/etc/traefik/traefik.yml:ro
-      - /opt/stacks/traefik/config/dynamic.yml:/etc/traefik/dynamic.yml:ro
-      - /opt/stacks/traefik/config/log:/var/log/traefik:rw
-      - /opt/stacks/traefik/data:/etc/traefik/data:rw
+      - /opt/stacks/traefik/config:/etc/traefik:ro
+      - /opt/stacks/traefik/log:/var/log/traefik:rw
+      - /opt/stacks/traefik/data:/data:rw
     ports:
       - 80:80/tcp
       - 443:443/tcp

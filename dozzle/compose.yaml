@@ -12,7 +12,7 @@ services:
       - /opt/stacks/dozzle/config:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock
     ports:
-      - 8008:8008/tcp
+      - 8080:8080/tcp
     networks:
       - proxy
 
