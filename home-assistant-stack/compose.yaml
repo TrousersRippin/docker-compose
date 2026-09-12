@@ -35,7 +35,7 @@ services:
       - /opt/stacks/zigbee2mqtt/config:/app/data:rw
       - /run/udev:/run/udev:ro
     ports:
-      - 8080:8080/tcp
+      - 8082:8080/tcp
     user: ${UID:-1000}:${GID:-1000}
     group_add: [dialout]
     devices:

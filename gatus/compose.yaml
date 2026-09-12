@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/stacks/gatus/config:/config:ro
     ports:
-      - 8899:8899/tcp
+      - 8081:8080/tcp
     networks:
       - proxy
 
