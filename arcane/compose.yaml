@@ -17,7 +17,7 @@ services:
       - 3552:3552/tcp
     healthcheck:
       disable: true
-    group_add: [987]
+    group_add: [986]
     networks:
       - proxy
 

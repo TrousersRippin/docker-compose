@@ -13,10 +13,10 @@ services:
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw
-      - /var/run/docker.sock:/var/run/docker.sock:ro
       - /mnt/ssd:/mnt/ssd:ro
       - /:/host:ro
       - /sys/class/thermal:/sys/class/thermal:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 3003:3000/tcp
     healthcheck:
