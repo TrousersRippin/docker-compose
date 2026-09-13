@@ -11,8 +11,8 @@ services:
     volumes:
       - /opt/stacks/speedtest-tracker/config:/config:rw
     ports:
-      - 8280:80/tcp
-      - 8543:443/tcp
+      - 8003:80/tcp
+      - 8445:443/tcp
     networks:
       - proxy
 

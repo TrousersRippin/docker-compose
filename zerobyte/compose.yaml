@@ -15,7 +15,7 @@ services:
       - /opt/stacks:/data:rw
     ports:
       - 4096:4096/tcp
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
     networks:
       - proxy
 

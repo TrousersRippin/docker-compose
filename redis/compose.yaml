@@ -15,7 +15,7 @@ services:
       - /opt/stacks/redis/data:/data:rw
     ports:
       - 6379:6379/tcp
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
     networks:
       - proxy
 

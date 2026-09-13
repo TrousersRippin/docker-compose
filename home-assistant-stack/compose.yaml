@@ -18,7 +18,7 @@ services:
       - /opt/stacks/mosquitto/log:/mosquitto/log:rw
     ports:
       - 1883:1883/tcp
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
 
   zigbee2mqtt:
     image: ghcr.io/koenkk/zigbee2mqtt:latest
@@ -35,8 +35,8 @@ services:
       - /opt/stacks/zigbee2mqtt/config:/app/data:rw
       - /run/udev:/run/udev:ro
     ports:
-      - 8082:8080/tcp
-    user: ${UID:-1000}:${GID:-1000}
+      - 8080:8080/tcp
+    user: 1000:1000
     group_add: [dialout]
     devices:
       - /dev/ttyUSB0:/dev/ttyUSB0
@@ -55,7 +55,7 @@ services:
       - /run/dbus:/run/dbus:ro
     ports:
       - 8123:8123/tcp
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
     depends_on:
       - mosquitto
       - zigbee2mqtt

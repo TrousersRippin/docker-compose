@@ -14,7 +14,7 @@ services:
       - /mnt/ssd/media/books:/books:ro
     ports:
       - 5000:5000/tcp
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
     networks:
       - proxy
 

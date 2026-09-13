@@ -18,12 +18,11 @@ services:
     volumes:
       - /opt/stacks/telegraf/config/telegraf.conf:/etc/telegraf/telegraf.conf:ro
       - /:/hostfs:ro
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
-      - 8125:8125/tcp
       - 9273:9273/tcp
-    user: ${UID:-1000}:${GID:-1000}
-    group_add: [987]
+    user: 1000:1000
+    group_add: [986]
     networks:
       - proxy
 

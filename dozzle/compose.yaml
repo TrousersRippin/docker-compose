@@ -10,7 +10,7 @@ services:
     env_file: .env
     volumes:
       - /opt/stacks/dozzle/config:/data:rw
-      - /var/run/docker.sock:/var/run/docker.sock
+      - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 8080:8080/tcp
     networks:

@@ -11,10 +11,10 @@ services:
     volumes:
       - /opt/stacks/vaultwarden/config:/data:rw
     ports:
-      - 8003:80/tcp
+      - 8004:80/tcp
     healthcheck:
       disable: true
-    user: ${UID:-1000}:${GID:-1000}
+    user: 1000:1000
     networks:
       - proxy
 

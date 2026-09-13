@@ -16,7 +16,7 @@ services:
     volumes:
       - /opt/stacks/jellystat/data:/app/backend/backup-data:rw
     ports:
-      - 3005:3000/tcp
+      - 3004:3000/tcp
     healthcheck:
       disable: true
     networks:
