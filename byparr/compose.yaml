@@ -1,0 +1,19 @@
+---
+services:
+  byparr:
+    image: ghcr.io/thephaseless/byparr:latest
+    container_name: byparr
+    hostname: byparr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+    ports:
+      - 8191:8191/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true

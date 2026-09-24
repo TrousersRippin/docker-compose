@@ -1,0 +1,25 @@
+---
+services:
+  flaresolverr:
+    image: ghcr.io/flaresolverr/flaresolverr:latest
+    container_name: flaresolverr
+    hostname: flaresolverr
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    environment:
+      - TZ=Europe/Stockholm
+      - LOG_LEVEL=info
+      - LOG_FILE=none
+      - LOG_HTML=false
+      - CAPTCHA_SOLVER=none
+    volumes:
+      - /opt/stacks/flaresolverr/config:/config:rw
+    ports:
+      - 8191:8191/tcp
+    networks:
+      - proxy
+
+networks:
+  proxy:
+    external: true
