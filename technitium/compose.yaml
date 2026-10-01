@@ -12,6 +12,7 @@ services:
     env_file: .env
     volumes:
       - /opt/stacks/technitium/config:/etc/dns:rw
+      - /opt/stacks/technitium/logs:/var/log/technitium/dns:rw
     ports:
       - 5380:5380/tcp
       - 53:53/tcp
