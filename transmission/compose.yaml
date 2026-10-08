@@ -1,7 +1,7 @@
 ---
 services:
   transmission:
-    image: lscr.io/linuxserver/transmission:latest
+    image: ghcr.io/linuxserver/transmission:latest
     container_name: transmission
     hostname: transmission
     restart: unless-stopped
