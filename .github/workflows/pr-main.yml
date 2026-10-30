@@ -1,11 +1,14 @@
 ---
 name: On PR to Main
 "on":
+  push:
+    branches: ["main"]
   pull_request:
     branches: ["main"]
 permissions:
   contents: read
   pull-requests: write
+  security-events: write
 jobs:
   compose-validate:
     name: Compose Validate
@@ -23,6 +26,8 @@ jobs:
           fi
           for f in "${files[@]}"; do
             echo "Validating $f"
+            # .env files are gitignored, so stub them for env_file references
+            touch "$(dirname "$f")/.env"
             docker compose -f "$f" config --quiet
           done
 
