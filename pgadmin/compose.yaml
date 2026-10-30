@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/stacks/pgadmin/data:/var/lib/pgadmin:rw
     ports:
-      - 8002:80/tcp
+      - 8002:8002/tcp
     networks:
       - proxy
 

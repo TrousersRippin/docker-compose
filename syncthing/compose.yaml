@@ -13,7 +13,6 @@ services:
       - PGID=1000
     volumes:
       - /opt/stacks/syncthing:/var/syncthing:rw
-      - $HOME:/var/syncthing/home:rw
     ports:
       - 8384:8384/tcp
       - 21027:21027/udp

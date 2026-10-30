@@ -9,8 +9,6 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-      - PUID=1000
-      - PGID=1000
     volumes:
       - /opt/stacks/ghost/config/config.production.json:/var/lib/ghost/config.production.json:ro
       - /opt/stacks/ghost/config:/var/lib/ghost/content:rw

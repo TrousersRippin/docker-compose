@@ -9,7 +9,7 @@ services:
       - no-new-privileges:true
     environment:
       - TZ=Europe/Stockholm
-      - HOMEPAGE_ALLOWED_HOSTS=*
+      - HOMEPAGE_ALLOWED_HOSTS=homepage.thenoisykeyboard.com
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw

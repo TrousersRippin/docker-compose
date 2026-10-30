@@ -7,13 +7,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-      - PUID=1000
-      - PGID=1000
+    env_file: .env
     volumes:
       - /opt/stacks/transmission/config:/config:rw
-      - /opt/stacks/transmission/config:/watch:rw
+      - /opt/stacks/transmission/watch:/watch:rw
       - /mnt/ssd/torrents:/data/torrents:rw
     ports:
       - 9092:9091/tcp

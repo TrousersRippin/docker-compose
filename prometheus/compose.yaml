@@ -10,13 +10,10 @@ services:
     command:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --web.enable-remote-write-receiver
-      - --web.enable-lifecycle
-      - --web.enable-admin-api
     environment:
       - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/prometheus/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
-      - /opt/stacks/prometheus/certs:/etc/prometheus/certs:ro
       - prometheus-data:/prometheus:rw
     ports:
       - 9090:9090/tcp
