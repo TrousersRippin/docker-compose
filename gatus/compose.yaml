@@ -7,9 +7,7 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    environment:
-      - TZ=Europe/Stockholm
-      - GATUS_CONFIG_PATH=/config
+    env_file: .env
     volumes:
       - /opt/stacks/gatus/config:/config:ro
       - /opt/stacks/gatus/data:/data:rw
