@@ -15,7 +15,7 @@ services:
       - DOTNET_gcServer=0
     volumes:
       - /opt/stacks/sonarr/config:/config:rw
-      - /mnt/ssd:/data:rw
+      - /mnt/nvme:/data:rw
     ports:
       - 8989:8989/tcp
     networks:

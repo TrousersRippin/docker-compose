@@ -13,7 +13,7 @@ services:
       - PGID=1000
     volumes:
       - /opt/stacks/bazarr/config:/config:rw
-      - /mnt/ssd:/data:rw
+      - /mnt/nvme:/data:rw
     ports:
       - 6767:6767/tcp
     networks:

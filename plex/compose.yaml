@@ -13,7 +13,7 @@ services:
       - /opt/stacks/plex:/config:rw
       - /opt/stacks/plex:/transcode:rw
       - /mnt/hdd:/data:ro
-      - /mnt/ssd/media:/download:rw
+      - /mnt/nvme/media:/download:rw
     ports:
       - 32400:32400/tcp
       - 1900:1900/udp

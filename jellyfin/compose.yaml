@@ -13,7 +13,7 @@ services:
       - /opt/stacks/jellyfin/cache:/cache:rw
       - /opt/stacks/jellyfin/config:/config:rw
       - /mnt/hdd:/data:ro
-      - /mnt/ssd/media:/download:rw
+      - /mnt/nvme/media:/download:rw
     ports:
       - 8096:8096/tcp
     healthcheck:

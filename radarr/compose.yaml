@@ -15,7 +15,7 @@ services:
       - DOTNET_gcServer=0
     volumes:
       - /opt/stacks/radarr/config:/config:rw
-      - /mnt/ssd:/data:rw
+      - /mnt/nvme:/data:rw
     ports:
       - 7878:7878/tcp
     networks:

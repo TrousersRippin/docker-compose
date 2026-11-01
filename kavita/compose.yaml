@@ -11,7 +11,7 @@ services:
       - TZ=Europe/Stockholm
     volumes:
       - /opt/stacks/kavita/config:/kavita/config:rw
-      - /mnt/ssd/media/books:/books:ro
+      - /mnt/nvme/media/books:/books:ro
     ports:
       - 5000:5000/tcp
     user: 1000:1000

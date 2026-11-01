@@ -11,7 +11,7 @@ services:
     volumes:
       - /opt/stacks/arcane/data:/app/data:rw
       - /opt/stacks:/opt/stacks:rw
-      - /mnt/ssd/backup:/backups:rw
+      - /mnt/nvme/backup:/backups:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro
     ports:
       - 3552:3552/tcp

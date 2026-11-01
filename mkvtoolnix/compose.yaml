@@ -14,7 +14,7 @@ services:
       - DARK_MODE=1
     volumes:
       - /opt/stacks/mkvtoolnix/config:/config:rw
-      - /mnt/ssd:/storage:rw
+      - /mnt/nvme:/storage:rw
     ports:
       - 5800:5800/tcp
     networks:

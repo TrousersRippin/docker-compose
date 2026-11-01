@@ -13,7 +13,7 @@ services:
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw
-      - /mnt/ssd:/mnt/ssd:ro
+      - /mnt/nvme:/mnt/nvme:ro
       - /:/host:ro
       - /sys/class/thermal:/sys/class/thermal:ro
       - /var/run/docker.sock:/var/run/docker.sock:ro
