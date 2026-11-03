@@ -14,7 +14,7 @@ services:
     volumes:
       - /opt/stacks/audiobookshelf/config:/config:rw
       - /opt/stacks/audiobookshelf/data:/metadata:rw
-      - /mnt/nvme/media/books:/audiobooks:ro
+      - /mnt/nvme/media/books:/audiobooks:rw
     ports:
       - 13378:13378/tcp
     user: 1000:1000
