@@ -16,6 +16,7 @@ services:
       - /opt/stacks/nginx/kickstart:/usr/share/nginx/html/kickstart:ro
       - /opt/stacks/nginx/preseed:/usr/share/nginx/html/preseed:ro
       - /opt/stacks/nginx/proxmox:/usr/share/nginx/html/proxmox:ro
+      - /opt/stacks/nginx/icons:/usr/share/nginx/html/icons:ro
     ports:
       - 8082:80/tcp
     networks:
