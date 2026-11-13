@@ -11,7 +11,7 @@ services:
     command:
       - --config.file=/etc/loki/loki.yaml
     environment:
-      - TZ=Europe/Stockholm
+      TZ: Europe/Stockholm
     volumes:
       - /opt/stacks/loki/config/loki.yaml:/etc/loki/loki.yaml:ro
       - loki-data:/loki:rw

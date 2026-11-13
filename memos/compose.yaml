@@ -7,7 +7,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      MEMOS_DRIVER: postgres
+    env_file: secret.env  # MEMOS_DSN
     volumes:
       - /opt/stacks/memos/config:/var/opt/memos:rw
     ports:

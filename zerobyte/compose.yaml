@@ -7,7 +7,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      RCLONE_CONFIG_DIR: /home/troy/.config/rclone
+    env_file: secret.env  # APP_SECRET, BASE_URL, TRUSTED_ORIGINS, WEBHOOK_ALLOWED_ORIGINS
     volumes:
       - /opt/stacks/zerobyte:/var/lib/zerobyte:rw
       - /home/troy/.config/rclone:/home/troy/.config/rclone:ro

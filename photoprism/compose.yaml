@@ -7,7 +7,38 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      PHOTOPRISM_ADMIN_USER: troy
+      PHOTOPRISM_AUTH_MODE: password
+      PHOTOPRISM_DATABASE_DRIVER: sqlite
+      PHOTOPRISM_DEFAULT_TLS: "false"
+      PHOTOPRISM_DISABLE_CHOWN: "false"
+      PHOTOPRISM_DISABLE_CLASSIFICATION: "false"
+      PHOTOPRISM_DISABLE_FACES: "true"
+      PHOTOPRISM_DISABLE_MCP: "true"
+      PHOTOPRISM_DISABLE_SETTINGS: "false"
+      PHOTOPRISM_DISABLE_TENSORFLOW: "true"
+      PHOTOPRISM_DISABLE_TLS: "true"
+      PHOTOPRISM_DISABLE_WEBDAV: "true"
+      PHOTOPRISM_EXPERIMENTAL: "false"
+      PHOTOPRISM_GID: 1000
+      PHOTOPRISM_HTTP_COMPRESSION: gzip
+      PHOTOPRISM_JPEG_QUALITY: 80
+      PHOTOPRISM_JPEG_SIZE: 720
+      PHOTOPRISM_LOG_LEVEL: info
+      PHOTOPRISM_ORIGINALS_LIMIT: 5000
+      PHOTOPRISM_PNG_SIZE: 720
+      PHOTOPRISM_READONLY: "true"
+      PHOTOPRISM_SITE_AUTHOR: Troy Rippin
+      PHOTOPRISM_SITE_CAPTION: AI-Powered Photos App
+      PHOTOPRISM_SITE_DESCRIPTION: ""
+      PHOTOPRISM_THUMB_FILTER: linear
+      PHOTOPRISM_THUMB_SIZE: 720
+      PHOTOPRISM_THUMB_SIZE_UNCACHED: 720
+      PHOTOPRISM_THUMB_UNCACHED: "true"
+      PHOTOPRISM_UID: 1000
+    env_file: secret.env  # PHOTOPRISM_ADMIN_PASSWORD, PHOTOPRISM_SITE_URL
     volumes:
       - /opt/stacks/photoprism/data:/photoprism/storage:rw
       - /mnt/nvme/media/photos:/photoprism/originals:ro

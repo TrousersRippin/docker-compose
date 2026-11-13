@@ -26,8 +26,8 @@ jobs:
           fi
           for f in "${files[@]}"; do
             echo "Validating $f"
-            # .env files are gitignored, so stub them for env_file references
-            touch "$(dirname "$f")/.env"
+            # .env/secret.env files are gitignored, so stub them for env_file references
+            touch "$(dirname "$f")/.env" "$(dirname "$f")/secret.env"
             docker compose -f "$f" config --quiet
           done
 

@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
+      TZ: Europe/Stockholm
     volumes:
       - /opt/stacks/jellyfin/cache:/cache:rw
       - /opt/stacks/jellyfin/config:/config:rw

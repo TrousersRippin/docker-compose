@@ -3,12 +3,16 @@ services:
   plex:
     image: docker.io/plexinc/pms-docker:latest
     container_name: plex
-    hostname: plex.thenoisykeyboard.com
+    hostname: plex
     restart: unless-stopped
     network_mode: host
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      PLEX_UID: 1000
+      PLEX_GID: 1000
+      VERSION: docker
     volumes:
       - /opt/stacks/plex:/config:rw
       - /opt/stacks/plex:/transcode:rw

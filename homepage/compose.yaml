@@ -8,8 +8,8 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
-      - HOMEPAGE_ALLOWED_HOSTS=homepage.thenoisykeyboard.com
+      TZ: Europe/Stockholm
+    env_file: secret.env  # HOMEPAGE_ALLOWED_HOSTS
     volumes:
       - /opt/stacks/homepage/config:/config:rw
       - /opt/stacks/homepage/icons:/app/public/icons:rw

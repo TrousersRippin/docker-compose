@@ -8,7 +8,9 @@ services:
     security_opt:
       - no-new-privileges:true
     command: postgres --hba-file=/etc/postgresql/pg_hba.conf
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+    env_file: secret.env  # POSTGRES_PASSWORD
     volumes:
       - /opt/stacks/postgres/config/pg_hba.conf:/etc/postgresql/pg_hba.conf:ro
       - postgres-data:/var/lib/postgresql:rw

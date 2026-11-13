@@ -9,7 +9,15 @@ services:
       - no-new-privileges:true
     sysctls:
       - net.ipv4.ip_local_port_range=1024 65000
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      DNS_SERVER_BLOCK_LIST_URLS: "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
+      DNS_SERVER_ENABLE_BLOCKING: "true"
+      DNS_SERVER_FORWARDERS: 1.1.1.1,1.0.0.1
+      DNS_SERVER_LOG_USING_LOCAL_TIME: "true"
+      DNS_SERVER_PREFER_IPV6: "false"
+      DNS_SERVER_RECURSION: AllowOnlyForPrivateNetworks
+    env_file: secret.env  # DNS_SERVER_ADMIN_PASSWORD, DNS_SERVER_DOMAIN
     volumes:
       - /opt/stacks/technitium/config:/etc/dns:rw
       - /opt/stacks/technitium/logs:/var/log/technitium/dns:rw

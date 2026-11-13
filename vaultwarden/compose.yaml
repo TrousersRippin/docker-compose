@@ -7,7 +7,51 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      ADMIN_SESSION_LIFETIME: 20
+      AUTHENTICATOR_DISABLE_TIME_DRIFT: "false"
+      DISABLE_2FA_REMEMBER: "false"
+      DISABLE_ICON_DOWNLOAD: "false"
+      DNS_PREFER_IPV6: "false"
+      EMAIL_2FA_AUTO_FALLBACK: "false"
+      EMAIL_2FA_ENFORCE_ON_VERIFIED_INVITE: "true"
+      EMAIL_ATTEMPTS_LIMIT: 3
+      EMAIL_CHANGE_ALLOWED: "true"
+      EMAIL_EXPIRATION_TIME: 600
+      EMAIL_TOKEN_SIZE: 6
+      EMERGENCY_ACCESS_ALLOWED: "true"
+      HTTP_REQUEST_BLOCK_NON_GLOBAL_IPS: "true"
+      ICON_CACHE_NEGTTL: 259200
+      ICON_CACHE_TTL: 2592000
+      ICON_DOWNLOAD_TIMEOUT: 10
+      ICON_REDIRECT_CODE: 302
+      INCOMPLETE_2FA_TIME_LIMIT: 3
+      INCREASE_NOTE_SIZE_LIMIT: "false"
+      INVITATION_ORG_NAME: Vaultwarden
+      INVITATIONS_ALLOWED: "true"
+      IP_HEADER: X-Real-IP
+      IP_HEADER_TRUSTED_PROXIES: local
+      LOG_TIMESTAMP_FORMAT: "%Y-%m-%d %H:%M:%S.%3f"
+      PASSWORD_HINTS_ALLOWED: "true"
+      PASSWORD_ITERATIONS: 600000
+      RELOAD_TEMPLATES: "false"
+      REQUIRE_DEVICE_EMAIL: "false"
+      SENDS_ALLOWED: "true"
+      SHOW_PASSWORD_HINT: "false"
+      SIGNUPS_ALLOWED: "false"
+      SIGNUPS_VERIFY: "true"
+      SIGNUPS_VERIFY_RESEND_LIMIT: 6
+      SIGNUPS_VERIFY_RESEND_TIME: 3600
+      SMTP_ACCEPT_INVALID_CERTS: "false"
+      SMTP_ACCEPT_INVALID_HOSTNAMES: "false"
+      SMTP_EMBED_IMAGES: "true"
+      SMTP_FROM_NAME: Vaultwarden
+      SMTP_PORT: 587
+      SMTP_SECURITY: starttls
+      SMTP_TIMEOUT: 15
+      USE_SENDMAIL: "false"
+    env_file: secret.env  # ADMIN_TOKEN, DATABASE_URL, DOMAIN, SIGNUPS_DOMAINS_WHITELIST, SMTP_FROM, SMTP_HOST, SMTP_PASSWORD, SMTP_USERNAME
     volumes:
       - /opt/stacks/vaultwarden/config:/data:rw
     ports:

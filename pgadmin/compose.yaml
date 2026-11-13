@@ -7,7 +7,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      PGADMIN_LISTEN_PORT: 8002
+    env_file: secret.env  # PGADMIN_DEFAULT_EMAIL, PGADMIN_DEFAULT_PASSWORD
     volumes:
       - /opt/stacks/pgadmin/data:/var/lib/pgadmin:rw
     ports:

@@ -14,7 +14,7 @@ services:
       - --stability.level=experimental
       - /etc/alloy/config.alloy
     environment:
-      - TZ=Europe/Stockholm
+      TZ: Europe/Stockholm
     volumes:
       - /opt/stacks/alloy/config/config.alloy:/etc/alloy/config.alloy:ro
       - alloy-data:/var/lib/alloy/data:rw

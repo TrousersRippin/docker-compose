@@ -8,11 +8,11 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
-      - LOG_LEVEL=info
-      - LOG_FILE=none
-      - LOG_HTML=false
-      - CAPTCHA_SOLVER=none
+      TZ: Europe/Stockholm
+      LOG_LEVEL: info
+      LOG_FILE: none
+      LOG_HTML: "false"
+      CAPTCHA_SOLVER: none
     volumes:
       - /opt/stacks/flaresolverr/config:/config:rw
     ports:

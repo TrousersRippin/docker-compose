@@ -7,7 +7,18 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      ANALYTICS_DISABLED: "true"
+      OIDC_CLIENT_ID: arcane
+      OIDC_ENABLED: "true"
+      OIDC_MERGE_ACCOUNTS: "true"
+      OIDC_SCOPES: email openid profile
+      PROJECTS_DIRECTORY: /opt/stacks/compose
+      PGID: 1000
+      PUID: 1000
+      TRUSTED_PROXIES: 10.100.0.0/24
+    env_file: secret.env  # APP_URL, ENCRYPTION_KEY, OIDC_CLIENT_SECRET, OIDC_ISSUER_URL
     volumes:
       - /opt/stacks/arcane/data:/app/data:rw
       - /opt/stacks:/opt/stacks:rw

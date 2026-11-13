@@ -8,9 +8,9 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
-      - PUID=1000
-      - PGID=1000
+      TZ: Europe/Stockholm
+      PUID: 1000
+      PGID: 1000
     volumes:
       - /opt/stacks/dockhand/data:/app/data:rw
       - /opt/stacks:/opt/stacks:rw

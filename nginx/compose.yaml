@@ -8,7 +8,7 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
+      TZ: Europe/Stockholm
     volumes:
       - /opt/stacks/nginx/config/nginx.conf:/etc/nginx/conf.d/default.conf:ro
       - /opt/stacks/nginx/agama:/usr/share/nginx/html/agama:ro
