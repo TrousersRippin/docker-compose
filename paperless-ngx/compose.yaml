@@ -7,7 +7,25 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      MAGICK_MEMORY_LIMIT: 32
+      PAPERLESS_ADMIN_USER: troy
+      PAPERLESS_APPS: allauth.socialaccount.providers.openid_connect
+      PAPERLESS_ARCHIVE_FILE_GENERATION: never
+      PAPERLESS_CONVERT_MEMORY_LIMIT: 128000000
+      PAPERLESS_DBENGINE: postgresql
+      PAPERLESS_DBHOST: postgres
+      PAPERLESS_DBNAME: paperless
+      PAPERLESS_DBPORT: 5432
+      PAPERLESS_DBUSER: paperless
+      PAPERLESS_ENABLE_NLTK: "false"
+      PAPERLESS_OCR_MODE: "off"
+      PAPERLESS_TASK_WORKERS: 1
+      PAPERLESS_THREADS_PER_WORKER: 1
+      PAPERLESS_TIME_ZONE: Europe/Stockholm
+      PAPERLESS_WEBSERVER_WORKERS: 1
+    env_file: secret.env  # PAPERLESS_ADMIN_EMAIL, PAPERLESS_ADMIN_PASSWORD, PAPERLESS_DBPASS, PAPERLESS_REDIS, PAPERLESS_SECRET_KEY, PAPERLESS_SOCIALACCOUNT_PROVIDERS, PAPERLESS_URL
     volumes:
       - /opt/stacks/paperless/consume:/usr/src/paperless/consume:rw
       - /opt/stacks/paperless/data:/usr/src/paperless/data:rw

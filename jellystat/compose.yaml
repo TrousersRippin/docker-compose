@@ -12,7 +12,13 @@ services:
       options:
         max-file: 5
         max-size: 10m
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      POSTGRES_DB: jellystat
+      POSTGRES_IP: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: jellystat
+    env_file: secret.env  # JWT_SECRET, POSTGRES_PASSWORD
     volumes:
       - /opt/stacks/jellystat/data:/app/backend/backup-data:rw
     ports:

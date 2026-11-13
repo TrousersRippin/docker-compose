@@ -11,7 +11,7 @@ services:
       - --config.file=/etc/prometheus/prometheus.yaml
       - --web.enable-remote-write-receiver
     environment:
-      - TZ=Europe/Stockholm
+      TZ: Europe/Stockholm
     volumes:
       - /opt/stacks/prometheus/config/prometheus.yaml:/etc/prometheus/prometheus.yaml:ro
       - prometheus-data:/prometheus:rw

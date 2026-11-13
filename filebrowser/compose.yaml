@@ -7,7 +7,11 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      FILEBROWSER_CONFIG: /home/filebrowser/config/config.yaml
+      FILEBROWSER_OIDC_CLIENT_ID: filebrowser
+    env_file: secret.env  # FILEBROWSER_ADMIN_PASSWORD, FILEBROWSER_OIDC_CLIENT_SECRET
     volumes:
       - /opt/stacks/filebrowser/config:/home/filebrowser/config:rw
       - /opt/stacks/filebrowser/data:/home/filebrowser/data:rw

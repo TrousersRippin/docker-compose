@@ -7,7 +7,12 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+    env_file: secret.env  # POSTGRES_PASSWORD
     volumes:
       - /opt/stacks/zabbix/alertscripts:/usr/lib/zabbix/alertscripts:rw
       - /opt/stacks/zabbix/externalscripts:/usr/lib/zabbix/externalscripts:rw
@@ -25,7 +30,13 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      DB_SERVER_HOST: postgres
+      POSTGRES_DB: zabbix
+      POSTGRES_USER: zabbix
+      ZBX_SERVER_HOST: zabbix-backend
+    env_file: secret.env  # POSTGRES_PASSWORD
     ports:
       - 8083:8080/tcp
     healthcheck:
@@ -42,9 +53,10 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
     environment:
-      - ZBX_HOSTNAME=Zabbix server
+      TZ: Europe/Stockholm
+      ZBX_HOSTNAME: Zabbix server
+      ZBX_SERVER_HOST: zabbix-backend
     ports:
       - 10050:10050/tcp
     depends_on:

@@ -7,7 +7,16 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+      DOZZLE_AUTH_OIDC_CLIENT_ID: dozzle
+      DOZZLE_AUTH_OIDC_NAME: OIDC
+      DOZZLE_AUTH_OIDC_SCOPES: dozzle_roles
+      DOZZLE_AUTH_PROVIDER: oidc
+      DOZZLE_ENABLE_ACTIONS: "true"
+      DOZZLE_HOSTNAME: homelab
+      DOZZLE_NO_ANALYTICS: "true"
+    env_file: secret.env  # DOZZLE_AUTH_OIDC_CLIENT_SECRET, DOZZLE_AUTH_OIDC_ISSUER
     volumes:
       - /opt/stacks/dozzle/data:/data:rw
       - /var/run/docker.sock:/var/run/docker.sock:ro

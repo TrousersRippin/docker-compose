@@ -8,11 +8,11 @@ services:
     security_opt:
       - no-new-privileges:true
     environment:
-      - TZ=Europe/Stockholm
-      - PUID=1000
-      - PGID=1000
-      - DOTNET_GCConserveMemory=9
-      - DOTNET_gcServer=0
+      TZ: Europe/Stockholm
+      PUID: 1000
+      PGID: 1000
+      DOTNET_GCConserveMemory: 9
+      DOTNET_gcServer: 0
     volumes:
       - /opt/stacks/prowlarr/config:/config:rw
     ports:

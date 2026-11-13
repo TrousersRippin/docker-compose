@@ -7,7 +7,9 @@ services:
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
-    env_file: .env
+    environment:
+      TZ: Europe/Stockholm
+    env_file: secret.env  # CF_API_EMAIL, CF_DNS_API_TOKEN
     volumes:
       - /opt/stacks/traefik/config:/etc/traefik:ro
       - /opt/stacks/traefik/data:/data:rw
