@@ -30,7 +30,9 @@ services:
       GF_DATABASE_USER: grafana
       GF_LOG_FILTERS: "search-manifest-watcher:error"
       GF_PLUGINS_PREINSTALL_SYNC: yesoreyeram-infinity-datasource
-    env_file: secret.env  # GF_AUTH_GENERIC_OAUTH_API_URL, GF_AUTH_GENERIC_OAUTH_AUTH_URL, GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET, GF_AUTH_GENERIC_OAUTH_TOKEN_URL, GF_DATABASE_PASSWORD, GF_SERVER_ROOT_URL
+    # secret.env: GF_AUTH_GENERIC_OAUTH_API_URL, GF_AUTH_GENERIC_OAUTH_AUTH_URL, GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET,
+    #   GF_AUTH_GENERIC_OAUTH_TOKEN_URL, GF_DATABASE_PASSWORD, GF_SERVER_ROOT_URL
+    env_file: secret.env
     volumes:
       - /opt/stacks/grafana/config:/etc/grafana:ro
       - grafana-data:/var/lib/grafana:rw

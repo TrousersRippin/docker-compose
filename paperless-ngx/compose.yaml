@@ -25,7 +25,9 @@ services:
       PAPERLESS_THREADS_PER_WORKER: 1
       PAPERLESS_TIME_ZONE: Europe/Stockholm
       PAPERLESS_WEBSERVER_WORKERS: 1
-    env_file: secret.env  # PAPERLESS_ADMIN_EMAIL, PAPERLESS_ADMIN_PASSWORD, PAPERLESS_DBPASS, PAPERLESS_REDIS, PAPERLESS_SECRET_KEY, PAPERLESS_SOCIALACCOUNT_PROVIDERS, PAPERLESS_URL
+    # secret.env: PAPERLESS_ADMIN_EMAIL, PAPERLESS_ADMIN_PASSWORD, PAPERLESS_DBPASS, PAPERLESS_REDIS,
+    #   PAPERLESS_SECRET_KEY, PAPERLESS_SOCIALACCOUNT_PROVIDERS, PAPERLESS_URL
+    env_file: secret.env
     volumes:
       - /opt/stacks/paperless/consume:/usr/src/paperless/consume:rw
       - /opt/stacks/paperless/data:/usr/src/paperless/data:rw
