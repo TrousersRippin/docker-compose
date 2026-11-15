@@ -9,16 +9,16 @@ services:
       - no-new-privileges:true
     environment:
       TZ: Europe/Stockholm
-      ANALYTICS_DISABLED: "true"
-      OIDC_CLIENT_ID: arcane
-      OIDC_ENABLED: "true"
-      OIDC_MERGE_ACCOUNTS: "true"
-      OIDC_SCOPES: email openid profile
-      PROJECTS_DIRECTORY: /opt/stacks/compose
+      ARCANE_ANALYTICS_DISABLED: "true"
+      ARCANE_OIDC_CLIENT_ID: arcane
+      ARCANE_OIDC_ENABLED: "true"
+      ARCANE_OIDC_MERGE_ACCOUNTS: "true"
+      ARCANE_OIDC_SCOPES: email openid profile
+      ARCANE_PROJECTS_DIRECTORY: /opt/stacks/compose
+      ARCANE_TRUSTED_PROXIES: 10.100.0.0/24
       PGID: 1000
       PUID: 1000
-      TRUSTED_PROXIES: 10.100.0.0/24
-    env_file: secret.env  # APP_URL, ENCRYPTION_KEY, OIDC_CLIENT_SECRET, OIDC_ISSUER_URL
+    env_file: secret.env  # ARCANE_APP_URL, ARCANE_ENCRYPTION_KEY, ARCANE_OIDC_CLIENT_SECRET, ARCANE_OIDC_ISSUER_URL
     volumes:
       - /opt/stacks/arcane/data:/app/data:rw
       - /opt/stacks:/opt/stacks:rw

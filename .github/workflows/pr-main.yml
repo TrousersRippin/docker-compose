@@ -94,7 +94,8 @@ jobs:
       - name: Lint .env files
         run: |
           shopt -s globstar nullglob
-          files=(**/.env.example **/.env.template **/.env.sample)
+          files=(**/.env.example **/.env.template **/.env.sample \
+            **/secret.env.example)
           if [ ${#files[@]} -eq 0 ]; then
             echo "No .env template files found"
             exit 0
