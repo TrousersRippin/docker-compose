@@ -87,10 +87,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Install dotenv-linter
+        env:
+          DOTENV_LINTER_VERSION: v4.0.0
         run: |
           url="https://raw.githubusercontent.com/dotenv-linter"
-          url="$url/dotenv-linter/master/install.sh"
-          curl -sSfL "$url" | sh -s -- -b /usr/local/bin
+          url="$url/dotenv-linter/$DOTENV_LINTER_VERSION/install.sh"
+          curl -sSfL "$url" | sh -s -- -b /usr/local/bin "$DOTENV_LINTER_VERSION"
       - name: Lint .env files
         run: |
           shopt -s globstar nullglob
@@ -100,4 +102,4 @@ jobs:
             echo "No .env template files found"
             exit 0
           fi
-          dotenv-linter "${files[@]}"
+          dotenv-linter check "${files[@]}"
