@@ -14,7 +14,7 @@ jobs:
     name: Compose Validate
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Find and validate Compose files
         run: |
           shopt -s globstar nullglob
@@ -35,7 +35,7 @@ jobs:
     name: Dockerfile Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Find and lint Dockerfiles
         run: |
           shopt -s globstar nullglob
@@ -51,7 +51,7 @@ jobs:
     name: ShellCheck
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run ShellCheck
         run: |
           shopt -s globstar nullglob
@@ -66,7 +66,7 @@ jobs:
     name: Trivy Security Scan
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Run Trivy (config scan)
         uses: aquasecurity/trivy-action@master
         with:
@@ -85,7 +85,7 @@ jobs:
     name: Env File Lint
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Install dotenv-linter
         env:
           DOTENV_LINTER_VERSION: v4.0.0
